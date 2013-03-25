@@ -1,0 +1,45 @@
+<% provide(:title, 'Log In') %>
+
+<div class="row">
+  <div class="span-6 offset-5">
+
+    <%= form_tag sessions_path, class: "login-form form-validate" do %>
+      <h1 class="form-title">Log In</h1>
+
+      <%#= flash_error %>
+
+      <%= label_tag :email %>
+      <%= email_field_tag :email, '', autofocus: true %>
+
+      <%= label_tag :password %>
+      <!-- <span class="help-text" style="font-weight: bold;"> -->
+        <%#= link_to "(Forgot password?)", forgot_password_path %>
+      <!-- </span> -->
+      <%= password_field_tag :password %>
+
+      <label class="checkbox">
+        <%= check_box_tag :remember_me, 1 %>
+        Remember Me
+      </label>
+
+      <%= submit_tag "Log in", class: "btn btn-blue" %>
+
+    <% end %>
+
+    <span class="form-suggestion">
+      Don't have an account?
+      <%= link_to raw("Sign up for free &raquo;"), signup_path %>
+    </span>
+
+
+    <a href="/auth/github">Sign in with GitHub</a>
+
+  </div>
+</div>
+
+
+<% if signed_in? %>
+  <p>Signed in as: <%= current_user.username %></p>
+<% else %>
+  <p>not signed in</p>
+<% end %>
