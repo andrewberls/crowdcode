@@ -1,0 +1,57 @@
+// Headers
+.main-title {
+  font-size: 3em;
+  margin-bottom: 15px;
+}
+
+.condensed-header {
+  @include bold(1.1em);
+  margin-bottom: 25px;
+}
+
+h1 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+h2 {
+  @include bold(1.6em);
+  margin-bottom: 10px;
+}
+
+h3 {
+  @include bold(1.3em);
+  margin-bottom: 5px;
+}
+
+strong {
+  font-weight: bold;
+}
+
+.header-line {
+  border-bottom: 1px dashed $med-gray;
+  padding-bottom: 15px;
+  text-align: center;
+}
+
+.pretext-block {
+  // A block of centered text for informationals
+  margin-bottom: 20px;
+  text-align: center;
+
+  h1 { font-size: 2.1em; }
+
+  p {
+    color: $light-text;
+    font-size: 1.3em;
+    line-height: 1.5;
+  }
+}
+
+// Links
+a {
+  color: $blue;
+  text-decoration: none;
+
+  &:hover { text-decoration: underline; }
+}

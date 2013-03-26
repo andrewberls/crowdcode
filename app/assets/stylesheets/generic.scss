@@ -1,0 +1,44 @@
+//-- GENERIC
+//------------------------------------
+html {
+  overflow-y: scroll;
+}
+
+body {
+  background-color: $light-gray;
+  @extend %noise;
+  color: $gray-text;
+  font-family: $baseFontFamily;
+  font-size: 13px;
+}
+
+body > .container {
+  margin: 25px auto 0;
+}
+
+@include mobile {
+  body .container { padding: 0 5px; }
+}
+
+
+//-- LIB CLASSES
+//------------------------------------
+.left { float: left }
+.right { float: right }
+%noise { background: url('/images/noise.png') }
+
+.quote:before,
+.quote:after {
+  content: "\"";
+  color: darken($med-gray, 10);
+  font-weight: normal;
+}
+
+.divider {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.feature-notice {
+  margin-bottom: 20px;
+}

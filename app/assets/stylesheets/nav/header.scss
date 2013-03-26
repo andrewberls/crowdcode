@@ -1,0 +1,89 @@
+header {
+  @include clearfix;
+  background-color: $med-gray;
+  border-bottom: 1px solid darken($med-gray, 10);
+  padding: 5px;
+
+  h1 {
+    float: left;
+    font-family: Lobster, $baseFontFamily;
+    font-weight: bold;
+    margin: 0;
+    margin-right: 25px;
+
+    a {
+      color: inherit;
+      &:hover { text-decoration: none; }
+    }
+  }
+
+  li {
+    display: inline-block;
+    position: relative;
+
+    & > a {
+      @include border-radius;
+      color: $gray-text;
+      display: inline-block;
+      float: left;
+      font-weight: bold;
+      margin-right: 5px;
+      padding: 8px 10px;
+      position: relative;
+
+      &:hover,
+      &.current {
+        background-color: lighten($dark-gray, 15);
+        color: white;
+        text-decoration: none;
+      }
+
+      &.link-dead {
+        color: lighten($gray-text, 30);
+        &:hover {
+          background-color: $med-gray;
+          cursor: default;
+        }
+      }
+    }
+  }
+
+  .badge {
+    $height: 20px;
+    @include border-radius($height);
+    line-height: $height;
+    text-align: center;
+    padding: 0;
+    position: absolute;
+    bottom: -5px; right: 0px;
+    width: $height; height: $height;
+  }
+
+  @include mobile {
+    h1 { display: none; }
+
+    nav {
+      padding-top: 4px;
+      text-align: center;
+
+      ul {
+        display: inline-block;
+        text-align: center;
+
+        li {
+          float: left;
+          margin: 0 2px;
+        }
+
+        a { padding: 8px 6px; }
+      }
+    }
+
+    #group-tab {
+      display: none;
+    }
+  }
+
+
+
+}
