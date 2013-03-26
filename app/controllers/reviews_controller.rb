@@ -5,9 +5,6 @@ class ReviewsController < ApplicationController
     @review = Review.new
   end
 
-  def index
-  end
-
   def create
     @review = Review.new(params[:review])
 
@@ -18,6 +15,9 @@ class ReviewsController < ApplicationController
       flash[:error] = "Something went wrong!"
       render :new
     end
+  end
+
+  def index
   end
 
   def show
