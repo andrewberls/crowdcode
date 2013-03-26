@@ -1,5 +1,7 @@
 class ReviewsController < ApplicationController
+
   before_filter :must_be_signed_in, except: [:index, :show]
+  before_filter :find_review, only: [:show]
 
   def new
     @review = Review.new
@@ -31,4 +33,12 @@ class ReviewsController < ApplicationController
 
   def destroy
   end
+
+  private
+
+  def find_review
+    @review = Review.find_by_rid(params[:rid])
+    return redirect_to reviews_path if @review.blank?
+  end
+
 end
