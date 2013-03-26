@@ -9,6 +9,15 @@ class ReviewsController < ApplicationController
   end
 
   def create
+    @review = Review.new(params[:review])
+
+    if @review.save
+      flash[:success] = "Post successful!"
+      redirect_to @review
+    else
+      flash[:error] = "Something went wrong!"
+      render :new
+    end
   end
 
   def show

@@ -1,3 +1,8 @@
 <h1>Reviews#new</h1>
 <p>Find me in app/views/reviews/new.html.erb</p>
-
+#form views that post up to the controller, save review and redirect you back to it, validations on review to make sure title and body are long enough
+<% form_for @review do |r| %>
+  <%= r.label :title %>
+  <%= r.text_field :title, autofocus: true %>
+  <%= r.label :body %>
+  <%= r.text_area :body %>
