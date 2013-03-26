@@ -1,5 +1,9 @@
 Crowdcode::Application.routes.draw do
 
+  resources :reviews
+
+  resources :comments
+
   resources :users
   match 'signup'  => 'users#new',     as: 'signup'
   match 'welcome' => 'users#welcome', as: 'welcome'
