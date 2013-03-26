@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user, :signed_in?, :login_user
 
-  def must_be_logged_in
+  def must_be_signed_in
     respond_to do |format|
       format.html {
         authorized = signed_in?

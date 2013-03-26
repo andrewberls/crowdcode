@@ -1,22 +1,43 @@
+require 'authentication'
+
 class User < ActiveRecord::Base
+  include Authentication
 
   attr_accessible :username, :email, :password, :password_confirmation
 
-  # TODO: disable validations if github_uid present?
-  # has_secure_password
+  attr_reader :password
+  # validates_confirmation_of :password
 
- before_create :generate_auth_token
+  validate :password_for_non_oauth
+
+  validates :username, presence: true, length: { maximum: 50 }
+
+  valid_email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email,
+    presence: true,
+    format: { with: valid_email_regex },
+    uniqueness: { case_sensitive: false }
+
+  before_create :generate_auth_token
 
   def self.create_from_omniauth(omniauth)
     User.new.tap do |user|
       user.github_uid = omniauth['uid']
-      user.username  = omniauth['info']['nickname']
+      user.username   = omniauth['info']['nickname']
       user.email = omniauth['info']['email']
       user.save!
     end
   end
 
   private
+
+  # Non-oauth users (i.e., 'regular' accounts) must have a password
+  def password_for_non_oauth
+    password_invalid = password_digest.blank? || password.length < 5
+    if github_uid.blank? && password_invalid
+      errors.add(:password, "must be at least 5 characters")
+    end
+  end
 
   def generate_auth_token
     self.auth_token = SecureRandom.urlsafe_base64
