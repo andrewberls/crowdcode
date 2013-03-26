@@ -1,7 +1,7 @@
 Crowdcode::Application.routes.draw do
 
   resources :reviews
-  match 'r/:rid' => "reviews#show" # Shorthand
+  match 'r/:id' => "reviews#show" # Shorthand
 
   resources :comments
 
