@@ -37,7 +37,7 @@ class ReviewsController < ApplicationController
   private
 
   def find_review
-    @review = Review.find_by_rid(params[:rid])
+    @review = Review.find_by_rid(params[:id])
     return redirect_to reviews_path if @review.blank?
   end
 
