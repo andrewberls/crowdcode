@@ -6,7 +6,6 @@ class User < ActiveRecord::Base
   attr_accessible :username, :email, :password, :password_confirmation
 
   attr_reader :password
-  # validates_confirmation_of :password
 
   validate :password_for_non_oauth
 
@@ -21,11 +20,11 @@ class User < ActiveRecord::Base
   before_create :generate_auth_token
 
   def self.create_from_omniauth(omniauth)
-    User.new.tap do |user|
-      user.github_uid = omniauth['uid']
-      user.username   = omniauth['info']['nickname']
-      user.email = omniauth['info']['email']
-      user.save!
+    User.new.tap do |u|
+      u.github_uid = omniauth['uid']
+      u.username   = omniauth['info']['nickname']
+      u.email      = omniauth['info']['email']
+      u.save!
     end
   end
 

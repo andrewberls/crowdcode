@@ -6,7 +6,7 @@
     <%= form_tag sessions_path, class: "login-form form-validate" do %>
       <h1 class="form-title">Log In</h1>
 
-      <%#= flash_error %>
+      <%= flash_error %>
 
       <%= label_tag :email %>
       <%= email_field_tag :email, '', autofocus: true %>

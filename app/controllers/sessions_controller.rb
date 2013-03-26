@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
 
     if user && user.authenticate(params[:password])
       sign_in(user, permanent: params[:remember_me])
-      return redirect_to_return_or_path(path)
+      return redirect_to_return_or_path(root_url) # TODO
     else
       flash.now[:error] = "Invalid email or password"
       return render :new
