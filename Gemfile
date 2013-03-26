@@ -2,6 +2,10 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.2.11'
 
+gem 'nifty-generators'
+
+gem 'ancestry'
+
 gem 'pg'
 
 gem 'heroku'
