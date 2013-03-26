@@ -48,10 +48,49 @@ strong {
   }
 }
 
-// Links
 a {
   color: $blue;
   text-decoration: none;
 
   &:hover { text-decoration: underline; }
 }
+
+
+
+
+
+
+  code,
+  pre {
+    color: #393335;
+    font-family: $codeFontFamily;
+    font-size: 0.9em;
+  }
+
+  code {
+    // Inline code snippets
+    @include border-radius(2px);
+    background-color: darken($light-gray, 3);
+    border: 1px solid $med-gray;
+    color: #222;
+    font-size: 0.9em;
+    padding: 1px 2px;
+  }
+
+  pre {
+    // Code blocks
+    @include border-radius(2px);
+    background-color: darken($light-gray, 4);
+    border: 1px solid #ddd;
+    line-height: 1.4;
+    margin: 10px 0 15px;
+    padding: 10px 0;
+
+    code {
+      // Undo extra code stylings in markdown-fenced blocks
+      background: none;
+      border: none;
+      font-size: 13px;
+      padding: 0;
+    }
+  }

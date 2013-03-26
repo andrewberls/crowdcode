@@ -18,9 +18,7 @@ Crowdcode::Application.routes.draw do
   # match 'forgot_password'       => 'sessions#forgot_password', as: 'forgot_password'
   # match 'reset_password/:token' => 'sessions#reset_password',  as: 'reset_password'
 
-
-  #root to: 'static#start'
-  root to: 'sessions#new'
+  root to: 'static#start'
 
   match '*a' => 'static#not_found'
 

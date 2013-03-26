@@ -1,2 +1,11 @@
-<h1>Reviews#show</h1>
-<p>Find me in app/views/reviews/show.html.erb</p>
+<h1><%= @review.title %></h1>
+<div class="review">
+  <%= raw @review.body %>
+</div>
+
+<h2 style="margin-top: 40px;">Comments</h2>
+<% @review.comments.each do |comment| %>
+  <div style="outline:1px solid red; padding: 10px 10px 5px; margin-bottom: 10px;">
+    <p style="margin-bottom: 10px;"><%= raw comment.body %></p>
+  </div>
+<% end %>
