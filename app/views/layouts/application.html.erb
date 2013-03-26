@@ -26,5 +26,9 @@
   <%= javascript_include_tag :application %>
   <%= yield :javascript_includes %>
 
+  <% if signed_in? %>
+    <p>signed in as <%= current_user.username %></p>
+  <% end %>
+
 </body>
 </html>

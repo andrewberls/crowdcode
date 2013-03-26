@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery
 
-  ACCESS_DENIED_PATH = '/expenses'
+  ACCESS_DENIED_PATH = '/reviews' # TODO
 
   helper_method :current_user, :signed_in?, :login_user
 

@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   before_create :generate_auth_token
 
   def self.create_from_omniauth(omniauth)
-    User.new.tap do |u|
+    User.new do |u|
       u.github_uid = omniauth['uid']
       u.username   = omniauth['info']['nickname']
       u.email      = omniauth['info']['email']

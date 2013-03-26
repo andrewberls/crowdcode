@@ -1,5 +1,8 @@
 class ReviewsController < ApplicationController
+  before_filter :must_be_signed_in, except: [:index, :show]
+
   def new
+    @review = Review.new
   end
 
   def index
