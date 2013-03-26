@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
 
   def new
-    # return redirect_to PATH if signed_in?
+    # return redirect_to reviews_path if signed_in?
   end
 
   def create
@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
 
     if user && user.authenticate(params[:password])
       sign_in(user, permanent: params[:remember_me])
-      return redirect_to_return_or_path(root_url) # TODO
+      return redirect_to_return_or_path(reviews_path)
     else
       flash.now[:error] = "Invalid email or password"
       return render :new

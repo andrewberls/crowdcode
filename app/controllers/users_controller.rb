@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
     if @user.save
       sign_in(@user)
-      return redirect_to root_url # TODO
+      return redirect_to reviews_path
     else
       flash.now[:error] = "Error - please check your fields and try again."
       return render :new
