@@ -1,22 +1,12 @@
 // Headers
-.main-title {
-  font-size: 3em;
-  margin-bottom: 15px;
-}
-
-.condensed-header {
-  @include bold(1.1em);
-  margin-bottom: 25px;
-}
-
 h1 {
-  font-size: 2em;
+  font-size: 2.1em;
   margin-bottom: 10px;
 }
 
 h2 {
-  @include bold(1.6em);
-  margin-bottom: 10px;
+  font-size: 1.8em;
+  margin-bottom: 15px;
 }
 
 h3 {
@@ -28,26 +18,8 @@ strong {
   font-weight: bold;
 }
 
-.header-line {
-  border-bottom: 1px dashed $med-gray;
-  padding-bottom: 15px;
-  text-align: center;
-}
 
-.pretext-block {
-  // A block of centered text for informationals
-  margin-bottom: 20px;
-  text-align: center;
-
-  h1 { font-size: 2.1em; }
-
-  p {
-    color: $light-text;
-    font-size: 1.3em;
-    line-height: 1.5;
-  }
-}
-
+// Links
 a {
   color: $blue;
   text-decoration: none;
@@ -56,41 +28,38 @@ a {
 }
 
 
+// Code
+code,
+pre {
+  color: #393335;
+  font-family: $codeFontFamily;
+  font-size: 0.9em;
+}
 
+code {
+  // Inline code snippets
+  @include border-radius(2px);
+  background-color: darken($light-gray, 3);
+  border: 1px solid $med-gray;
+  color: #222;
+  font-size: 0.9em;
+  padding: 1px 2px;
+}
 
-
-
-  code,
-  pre {
-    color: #393335;
-    font-family: $codeFontFamily;
-    font-size: 0.9em;
-  }
+pre {
+  // Code blocks
+  @include border-radius(2px);
+  background-color: darken($light-gray, 4);
+  border: 1px solid #ddd;
+  line-height: 1.4;
+  margin: 15px 0 15px;
+  padding: 10px 0;
 
   code {
-    // Inline code snippets
-    @include border-radius(2px);
-    background-color: darken($light-gray, 3);
-    border: 1px solid $med-gray;
-    color: #222;
-    font-size: 0.9em;
-    padding: 1px 2px;
+    // Undo extra code stylings in markdown-fenced blocks
+    background: none;
+    border: none;
+    font-size: 13px;
+    padding: 0;
   }
-
-  pre {
-    // Code blocks
-    @include border-radius(2px);
-    background-color: darken($light-gray, 4);
-    border: 1px solid #ddd;
-    line-height: 1.4;
-    margin: 10px 0 15px;
-    padding: 10px 0;
-
-    code {
-      // Undo extra code stylings in markdown-fenced blocks
-      background: none;
-      border: none;
-      font-size: 13px;
-      padding: 0;
-    }
-  }
+}

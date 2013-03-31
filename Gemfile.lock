@@ -52,21 +52,13 @@ GEM
     debug_inspector (0.0.2)
     erubis (2.7.0)
     eventmachine (1.0.3)
-    excon (0.16.10)
     execjs (1.4.0)
       multi_json (~> 1.0)
     faraday (0.8.7)
       multipart-post (~> 1.1)
     hashie (1.2.0)
-    heroku (2.35.0)
-      heroku-api (~> 0.3.7)
-      launchy (>= 0.3.2)
-      netrc (~> 0.7.7)
-      rest-client (~> 1.6.1)
-      rubyzip
-    heroku-api (0.3.8)
-      excon (~> 0.16.10)
     hike (1.2.1)
+    hiredis (0.4.5)
     httpauth (0.2.0)
     i18n (0.6.4)
     journey (1.0.4)
@@ -88,7 +80,6 @@ GEM
     mime-types (1.21)
     multi_json (1.7.2)
     multipart-post (1.2.0)
-    netrc (0.7.7)
     oauth2 (0.8.1)
       faraday (~> 0.8)
       httpauth (~> 0.1)
@@ -131,10 +122,8 @@ GEM
     rake (10.0.4)
     rdoc (3.12.2)
       json (~> 1.4)
+    redis (3.0.3)
     ref (1.0.4)
-    rest-client (1.6.7)
-      mime-types (>= 1.16)
-    rubyzip (0.9.9)
     sass (3.2.7)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -173,12 +162,13 @@ DEPENDENCIES
   binding_of_caller
   coffee-rails
   dalli
-  heroku
+  hiredis (~> 0.4.5)
   jquery-rails
   letter_opener
   omniauth-github
   pg
   rails (= 3.2.11)
+  redis (~> 3.0.3)
   sass-rails
   sqlite3
   therubyracer

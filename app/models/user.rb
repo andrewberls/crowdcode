@@ -6,7 +6,6 @@ class User < ActiveRecord::Base
   attr_accessible :username, :email, :password, :password_confirmation
 
   attr_reader :password
-
   validate :password_for_non_oauth
 
   validates :username, presence: true, length: { maximum: 50 }
@@ -28,9 +27,30 @@ class User < ActiveRecord::Base
     end
   end
 
+  def votes_key
+    @votes_key ||= "users:#{id}:votes"
+  end
+
+  # Get a list of votes this user has cast
+  # Ex: current_user.votes => [{ rid: '1c3276', dir: 'up' }]
+  def votes
+    $redis.get_json_list(votes_key)
+  end
+
+  def add_vote(rid, dir)
+    # TODO: check if reversing an existing vote and delete?
+    $redis.lpush votes_key, { rid: rid, dir: dir }.to_json
+  end
+
+  def can_vote?(rid, dir)
+    # TODO
+    votes.none? { |v| v['rid'] == rid && v['dir'] == dir }
+  end
+
+
   private
 
-  # Non-oauth users (i.e., 'regular' accounts) must have a password
+  # Validate password for non-oauth users (i.e., 'regular' accounts)
   def password_for_non_oauth
     password_invalid = password_digest.blank? || password.length < 5
     if github_uid.blank? && password_invalid

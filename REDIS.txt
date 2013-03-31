@@ -1,0 +1,4 @@
+reviews:<rid>:votes => Number of votes for a review
+
+users:<id>:votes => List of votes (in JSON strings) a user has cast
+  Ex: [ { 'rid': '123456', 'dir': 'up' } ]

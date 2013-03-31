@@ -2,24 +2,34 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.2.11'
 
-gem 'ancestry'
+gem 'jquery-rails'
 
 gem 'pg'
 
-gem 'heroku'
+# Redis and adapters
+gem "redis", "~> 3.0.3"
+gem "hiredis", "~> 0.4.5"
+
+# Webserver
+gem 'thin'
+
+# gem 'heroku'
+
+# Threaded comments
+gem 'ancestry'
 
 gem 'therubyracer', :platforms => :ruby
 
+# Password encryption
 gem 'bcrypt-ruby', '~> 3.0.0'
 
+# Sign-in with GitHUb
 gem 'omniauth-github'
 
-gem 'jquery-rails'
-
-gem 'thin'
-
+# Caching
 gem 'dalli'
 
+# API serializers
 # gem 'active_model_serializers', :github => 'rails-api/active_model_serializers'
 
 group :assets do

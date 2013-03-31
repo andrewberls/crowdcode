@@ -1,12 +1,29 @@
-<h1><%= @review.title %></h1>
-<div class="review">
-  <%= raw @review.body %>
-</div>
+<% provide(:title, @review.title) %>
 
-<h2 style="margin-top: 40px;">Comments</h2>
-<% @review.comments.each do |comment| %>
-  <div style="outline:1px solid red; padding: 10px 10px 5px; margin-bottom: 10px;">
-    <p style="margin-bottom: 10px;"><%= raw comment.body %></p>
-    <div class="created_at"><%= comment.created_at.strftime("%b %d, %Y") %></div>
+<% content_for :main do %>
+
+  <div class="review" data-rid="<%= @review.rid %>">
+    <%# TODO: style depending on whether or not user can vote on this review %>
+    <div class="votes-container">
+      <a href="#" class="vote vote-up"></a>
+      <span class="votes"><%= @review.votes %></span>
+      <a href="#" class="vote vote-down"></a>
+    </div>
+
+    <h2><%= @review.title %></h2>
+    <%= raw @review.body %>
   </div>
+
+  <h2 style="margin-top:40px; border-bottom:1px solid #ddd; padding-bottom:5px">Comments</h2>
+  <% @review.comments.each do |comment| %>
+    <div style="border-bottom:1px solid #ddd; padding: 10px 10px 20px; margin-bottom: 10px;">
+      <p style="margin-bottom: 10px;"><%= raw comment.body %></p>
+      <div class="created_at"><%= comment.created_at.strftime("%b %d, %Y") %></div>
+    </div>
+  <% end %>
+
+<% end %>
+
+<% content_for :sidebar do %>
+  <p>Something useful here</p>
 <% end %>

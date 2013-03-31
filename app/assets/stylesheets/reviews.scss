@@ -1,0 +1,48 @@
+.review {
+  position: relative;
+}
+
+.votes-container {
+  @include bold(1.7em);
+  background-color: #1D9BD9;
+  color: white;
+  padding: 10px 20px;
+  position: absolute;
+  top: 10px; left: -80px;
+  text-align: center;
+
+  .vote {
+    display: block;
+  }
+
+  $arrow-color: white;
+  $arrow-size: 12px;
+  $spacer: 7px;
+  $disabled-color: #ddd;
+  .vote-up,
+  .vote-down {
+    height: 0;
+    width: 0;
+  }
+  .vote-up {
+    border-left: $arrow-size solid transparent;
+    border-right: $arrow-size solid transparent;
+    border-bottom: $arrow-size solid $arrow-color;
+    margin-bottom: $spacer;
+
+    &.vote-disabled {
+      border-bottom-color: $disabled-color;
+    }
+  }
+
+  .vote-down {
+    border-left: $arrow-size solid transparent;
+    border-right: $arrow-size solid transparent;
+    border-top: $arrow-size solid $arrow-color;
+    margin-top: $spacer;
+
+    &.vote-disabled {
+      border-top-color: $disabled-color;
+    }
+  }
+}

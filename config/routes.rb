@@ -1,6 +1,8 @@
 Crowdcode::Application.routes.draw do
 
-  resources :reviews
+  resources :reviews do
+    post 'votes', on: :member
+  end
   match 'r/:id' => "reviews#show" # Shorthand
 
   resources :comments

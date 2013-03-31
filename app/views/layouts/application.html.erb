@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width">
-  <title><%= yield :title %> | CrowdCode</title>
+  <title><%= yield(:title) + " |" if content_for?(:title) %> CrowdCode</title>
   <%= stylesheet_link_tag :crowdcode %>
   <%= csrf_meta_tags %>
   <!-- <link rel="shortcut icon" type="image/ico" href="/favicon.gif" /> -->
@@ -21,8 +21,8 @@
     <div class="container">
       <% if content_for? :sidebar %>
         <div class="row">
-          <div class="span-11 main"><%= yield :main %></div>
-          <div class="span-5 sidebar"><%= yield :sidebar %></div>
+          <div class="span-12 main"><%= yield :main %></div>
+          <div class="span-4 sidebar"><%= yield :sidebar %></div>
         </div>
       <% else %>
         <div class="row">

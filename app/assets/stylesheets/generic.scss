@@ -30,10 +30,14 @@ body > .container {
 .main,
 .sidebar {
   @include border-box;
-  padding: 10px;
-  min-height: 200px;
+}
+
+.main {
+  border-right: 1px solid #ddd;
+  padding: 15px 25px 15px 30px;
 }
 
 .sidebar {
-  border-left: 1px solid #ddd;
+  padding: 15px;
+  padding-left: 0;
 }
