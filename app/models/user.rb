@@ -27,32 +27,44 @@ class User < ActiveRecord::Base
     end
   end
 
-  def votes_key
-    @votes_key ||= "users:#{id}:votes"
+  def votes_key(rid)
+    "users:#{id}:votes:#{rid}"
   end
 
-  # Get a list of votes this user has cast
-  # Note that keys are strings instead of symbols
-  # Ex: current_user.votes => [{ rid: '1c3276', dir: 'up' }]
-  def votes
-    $redis.get_json_list(votes_key)
+  # The vote a user has cast on a review
+  # 'up', 'down', or nil
+  def vote_for(rid)
+    $redis.get votes_key(rid)
   end
 
-  def add_vote(rid, dir)
-    # TODO: Check if reversing an existing vote (ex: up -> down)
-    opposite = (dir == 'up') ? 'down' : 'up'
-    if votes.any? { |v| v['rid'] == rid && v['dir'] == opposite }
-      puts "OPPOSITE VOTE PRESENT"
-      # new_votes = votes.delete_if { |v| v['rid'] == rid && v['dir'] == opposite }
+  # Set a vote on a particular review
+  # In addition, will undo or override as necessary
+  # Ex: voting up will set to up
+  # Ex: voting up and then up again will undo your vote (neutralize)
+  # Ex: voting up and then down will set to down
+  def vote(rid, dir, amt)
+    review = Review.find_by_rid(rid)
+    vkey   = votes_key(rid)
+    vote   = $redis.get(vkey)
+    # opposite = (dir == 'up') ? 'down' : 'up'
+
+    puts "old vote: #{vote}, dir: #{dir}"
+
+    if vote.blank? || vote != dir
+      # No previous vote or overriding opposite (up -> down)
+      puts "===> BLANK set to #{dir}" if vote.blank?
+      puts "===> OVERRIDE change #{vote} to #{dir}" if vote.present? && vote != dir
+      $redis.set(vkey, dir)
+      (dir == 'up') ? review.vote_up(amt) : review.vote_down(amt)
+    else
+      # Same - undo
+      puts "===> SAME undoing #{vote} with opposite (del key)"
+      $redis.del(vkey)
+      (vote == 'up') ? review.vote_down(amt) : review.vote_up(amt)
+
     end
-
-    $redis.lpush votes_key, { rid: rid, dir: dir }.to_json
   end
 
-  def can_vote?(rid, dir)
-    # TODO
-    votes.none? { |v| v['rid'] == rid && v['dir'] == dir }
-  end
 
   private
 

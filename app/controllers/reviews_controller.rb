@@ -22,7 +22,7 @@ class ReviewsController < ApplicationController
   end
 
   def show
-    @vote = current_user.votes.find { |v| v['rid'] == @review.rid } || {}
+    @vote = current_user.vote_for(@review.rid)
   end
 
   def edit
@@ -37,21 +37,11 @@ class ReviewsController < ApplicationController
   def votes
     respond_to do |format|
       format.json {
-        # TODO: how to undo votes? Undoing an upvote is like sending a passive downvote,
-        # but we don't want this reflected in the view (highlight down arrow)
-        # Tracking active votes is tough, because old active votes (the original vote before redo)
-        # will match and display. Solution: timestamps or ???
         rid = params[:id]
         dir = params[:dir]
-        review = Review.find_by_rid(rid)
-
-        if current_user.can_vote?(rid, dir)
-          (dir == 'up') ? review.vote_up : review.vote_down
-          current_user.add_vote(rid, dir)
-          return render json: { votes: review.votes }
-        else
-          return render json: {}
-        end
+        amt = params[:amt]
+        current_user.vote(rid, dir, amt)
+        return render json: { votes: Review.find_by_rid(rid).votes }
       }
     end
   end

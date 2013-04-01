@@ -2,11 +2,10 @@
 
 <% content_for :main do %>
   <div class="review" data-rid="<%= @review.rid %>">
-    <% dir = @vote.fetch('dir', nil) %>
     <div class="votes-container">
-      <a href="#" class="vote vote-up <%= 'vote-active' if dir == 'up' %>"></a>
-      <span class="votes"><%= @review.votes %></span>
-      <a href="#" class="vote vote-down <%= 'vote-active' if dir == 'down' %>"></a>
+      <a href="#" class="vote vote-up <%= 'vote-active' if @vote == 'up' %>"></a>
+      <span class="votes" data-count="<%= @review.votes %>"><%= @review.votes %></span>
+      <a href="#" class="vote vote-down <%= 'vote-active' if @vote == 'down' %>"></a>
     </div>
 
     <h2><%= @review.title %></h2>

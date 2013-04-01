@@ -20,12 +20,14 @@ class Review < ActiveRecord::Base
     $redis.get(votes_key).to_i || 0
   end
 
-  def vote_up
-    $redis.incr(votes_key)
+  def vote_up(amt=1)
+    puts "=======> REVIEW vote_up by #{amt}"
+    $redis.incrby(votes_key, amt)
   end
 
-  def vote_down
-    $redis.decr(votes_key)
+  def vote_down(amt=1)
+    puts "=======> REVIEW vote_down by #{amt}"
+    $redis.decrby(votes_key, amt)
   end
 
   private
