@@ -21,12 +21,10 @@ class Review < ActiveRecord::Base
   end
 
   def vote_up(amt=1)
-    puts "=======> REVIEW vote_up by #{amt}"
     $redis.incrby(votes_key, amt)
   end
 
   def vote_down(amt=1)
-    puts "=======> REVIEW vote_down by #{amt}"
     $redis.decrby(votes_key, amt)
   end
 

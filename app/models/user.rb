@@ -45,23 +45,21 @@ class User < ActiveRecord::Base
   def vote(rid, dir, amt)
     review = Review.find_by_rid(rid)
     vkey   = votes_key(rid)
-    vote   = $redis.get(vkey)
-    # opposite = (dir == 'up') ? 'down' : 'up'
+    vote   = $redis.get(vkey) # Old vote on this review or nil
+    opposite = (dir == 'up') ? 'down' : 'up'
 
-    puts "old vote: #{vote}, dir: #{dir}"
-
-    if vote.blank? || vote != dir
-      # No previous vote or overriding opposite (up -> down)
-      puts "===> BLANK set to #{dir}" if vote.blank?
-      puts "===> OVERRIDE change #{vote} to #{dir}" if vote.present? && vote != dir
+    if vote.blank?
+      # Old vote is blank - vote review DIR by 1 and SET user key
+      review.send(:"vote_#{dir}")
       $redis.set(vkey, dir)
-      (dir == 'up') ? review.vote_up(amt) : review.vote_down(amt)
+    elsif vote == dir
+      # Old vote is same - vote review OPPOSITE by 1 and UNDO user key
+     review.send(:"vote_#{opposite}")
+     $redis.del(vkey)
     else
-      # Same - undo
-      puts "===> SAME undoing #{vote} with opposite (del key)"
-      $redis.del(vkey)
-      (vote == 'up') ? review.vote_down(amt) : review.vote_up(amt)
-
+      # Old vote is opposite - vote review DIR by 2 and SET user key
+      review.send(:"vote_#{dir}", 2)
+      $redis.set(vkey, dir)
     end
   end
 
