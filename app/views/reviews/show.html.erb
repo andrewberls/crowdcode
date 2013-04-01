@@ -1,13 +1,12 @@
 <% provide(:title, @review.title) %>
 
 <% content_for :main do %>
-
   <div class="review" data-rid="<%= @review.rid %>">
-    <%# TODO: style depending on whether or not user can vote on this review %>
+    <% dir = @vote.fetch('dir', nil) %>
     <div class="votes-container">
-      <a href="#" class="vote vote-up"></a>
+      <a href="#" class="vote vote-up <%= 'vote-active' if dir == 'up' %>"></a>
       <span class="votes"><%= @review.votes %></span>
-      <a href="#" class="vote vote-down"></a>
+      <a href="#" class="vote vote-down <%= 'vote-active' if dir == 'down' %>"></a>
     </div>
 
     <h2><%= @review.title %></h2>

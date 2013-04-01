@@ -32,13 +32,20 @@ class User < ActiveRecord::Base
   end
 
   # Get a list of votes this user has cast
+  # Note that keys are strings instead of symbols
   # Ex: current_user.votes => [{ rid: '1c3276', dir: 'up' }]
   def votes
     $redis.get_json_list(votes_key)
   end
 
   def add_vote(rid, dir)
-    # TODO: check if reversing an existing vote and delete?
+    # TODO: Check if reversing an existing vote (ex: up -> down)
+    opposite = (dir == 'up') ? 'down' : 'up'
+    if votes.any? { |v| v['rid'] == rid && v['dir'] == opposite }
+      puts "OPPOSITE VOTE PRESENT"
+      # new_votes = votes.delete_if { |v| v['rid'] == rid && v['dir'] == opposite }
+    end
+
     $redis.lpush votes_key, { rid: rid, dir: dir }.to_json
   end
 
@@ -46,7 +53,6 @@ class User < ActiveRecord::Base
     # TODO
     votes.none? { |v| v['rid'] == rid && v['dir'] == dir }
   end
-
 
   private
 

@@ -18,7 +18,7 @@
   $arrow-color: white;
   $arrow-size: 12px;
   $spacer: 7px;
-  $disabled-color: #ddd;
+  $active-color: red;
   .vote-up,
   .vote-down {
     height: 0;
@@ -30,8 +30,8 @@
     border-bottom: $arrow-size solid $arrow-color;
     margin-bottom: $spacer;
 
-    &.vote-disabled {
-      border-bottom-color: $disabled-color;
+    &.vote-active {
+      border-bottom-color: $active-color;
     }
   }
 
@@ -41,8 +41,8 @@
     border-top: $arrow-size solid $arrow-color;
     margin-top: $spacer;
 
-    &.vote-disabled {
-      border-top-color: $disabled-color;
+    &.vote-active {
+      border-top-color: $active-color;
     }
   }
 }
