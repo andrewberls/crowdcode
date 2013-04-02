@@ -2,8 +2,8 @@
 rid = -> $('.review').data('rid')
 
 # POST a vote (direction and amount)
-vote = (dir, amt=1) ->
-  $.post "/reviews/#{rid()}/votes", { dir: dir, amt: amt }
+vote = (dir) ->
+  $.post "/reviews/#{rid()}/votes", { dir: dir }
 
 # Change the display of the vote counter (direction and amount)
 changeCounter = (dir, amt=1) ->
@@ -31,7 +31,7 @@ $ ->
     else
       if $other.hasClass(activeClass)
         # Switch - vote DIR by 2
-        vote(dir, 2)
+        vote(dir)
         changeCounter(dir, 2)
       else
         # No previous vote - vote DIR by 1

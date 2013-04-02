@@ -27,6 +27,7 @@ class User < ActiveRecord::Base
     end
   end
 
+  # Redis key for vote on a specific review
   def votes_key(rid)
     "users:#{id}:votes:#{rid}"
   end
@@ -38,14 +39,11 @@ class User < ActiveRecord::Base
   end
 
   # Set a vote on a particular review
-  # In addition, will undo or override as necessary
-  # Ex: voting up will set to up
-  # Ex: voting up and then up again will undo your vote (neutralize)
-  # Ex: voting up and then down will set to down
-  def vote(rid, dir, amt)
-    review = Review.find_by_rid(rid)
-    vkey   = votes_key(rid)
-    vote   = $redis.get(vkey) # Old vote on this review or nil
+  # Will unset or override as necessary
+  def vote(rid, dir)
+    review   = Review.find_by_rid(rid)
+    vkey     = votes_key(rid)
+    vote     = $redis.get(vkey) # Old vote on this review (nil if none)
     opposite = (dir == 'up') ? 'down' : 'up'
 
     if vote.blank?
@@ -62,7 +60,6 @@ class User < ActiveRecord::Base
       $redis.set(vkey, dir)
     end
   end
-
 
   private
 

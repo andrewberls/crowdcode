@@ -9,7 +9,6 @@ class Review < ActiveRecord::Base
 
   before_create :generate_rid
 
-
   # Cache the redis key for votes
   # Ex: reviews:2:votes
   def votes_key
