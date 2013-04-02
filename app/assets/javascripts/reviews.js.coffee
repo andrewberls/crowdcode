@@ -5,15 +5,12 @@ rid = -> $('.review').data('rid')
 vote = (dir, amt=1) ->
   $.post "/reviews/#{rid()}/votes", { dir: dir, amt: amt }
 
-# Change the display of the vote counter
+# Change the display of the vote counter (direction and amount)
 changeCounter = (dir, amt=1) ->
   $votes = $('.votes-container').find('.votes')
   count  = parseInt($votes.html())
-  if dir == 'up'
-    $votes.html(count + amt)
-  else
-    $votes.html(count - amt)
-
+  newAmt = if dir == 'up' then count+amt else count-amt
+  $votes.html(newAmt)
 
 
 $ ->
@@ -21,44 +18,25 @@ $ ->
   $down = $('.vote-down')
   activeClass = 'vote-active'
 
-  # TODO: clean this up
+  $('.vote-up, .vote-down').click ->
+    dir = $(@).attr('id')
+    $other   = if dir == 'up' then $down else $up
+    opposite = $other.attr('id')
 
-  $up.click ->
     if $(@).hasClass(activeClass)
-      # Undo an upvote (Up -> Up = None)
-      vote('up')
-      changeCounter('down')
+      # Previous vote is same - UNDO
+      vote(dir)
+      changeCounter(opposite)
       $(@).removeClass(activeClass)
     else
-      if $down.hasClass(activeClass)
-        # Switch (Down -> Up)
-        vote('up', 2)
-        changeCounter('up', 2)
+      if $other.hasClass(activeClass)
+        # Switch - vote DIR by 2
+        vote(dir, 2)
+        changeCounter(dir, 2)
       else
-        # Add (None -> Up)
-        vote('up')
-        changeCounter('up')
-
-      $('.vote').removeClass(activeClass)
-      $(@).addClass(activeClass)
-    return false
-
-
-  $down.click ->
-    if $(@).hasClass(activeClass)
-      # Undo a downvote (Down -> Down = None)
-      vote('down')
-      changeCounter('up')
-      $(@).removeClass(activeClass)
-    else
-      if $up.hasClass(activeClass)
-        # Switch (Up -> Down)
-        vote('down', 2)
-        changeCounter('down', 2)
-      else
-        # Add (None -> Down)
-        vote('down')
-        changeCounter('down')
+        # No previous vote - vote DIR by 1
+        vote(dir)
+        changeCounter(dir)
 
       $('.vote').removeClass(activeClass)
       $(@).addClass(activeClass)

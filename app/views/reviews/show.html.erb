@@ -3,9 +3,9 @@
 <% content_for :main do %>
   <div class="review" data-rid="<%= @review.rid %>">
     <div class="votes-container">
-      <a href="#" class="vote vote-up <%= 'vote-active' if @vote == 'up' %>"></a>
-      <span class="votes" data-count="<%= @review.votes %>"><%= @review.votes %></span>
-      <a href="#" class="vote vote-down <%= 'vote-active' if @vote == 'down' %>"></a>
+      <a href="#" id="up" class="vote vote-up <%= 'vote-active' if @vote == 'up' %>"></a>
+      <span class="votes"><%= @review.votes %></span>
+      <a href="#" id="down" class="vote vote-down <%= 'vote-active' if @vote == 'down' %>"></a>
     </div>
 
     <h2><%= @review.title %></h2>
