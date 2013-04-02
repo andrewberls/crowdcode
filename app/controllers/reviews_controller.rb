@@ -23,6 +23,7 @@ class ReviewsController < ApplicationController
 
   def show
     @vote = current_user.vote_for(@review.rid)
+    @comment = Comment.new
   end
 
   def edit

@@ -16,10 +16,17 @@
   <% @review.comments.each do |comment| %>
     <div style="border-bottom:1px solid #ddd; padding: 10px 10px 20px; margin-bottom: 10px;">
       <p style="margin-bottom: 10px;"><%= raw comment.body %></p>
-      <div class="created_at"><%= comment.created_at.strftime("%b %d, %Y") %></div>
+      <div class="created_at"><%= comment.created_at.strftime("%B %d, %Y") %></div>
+      </div>
     </div>
   <% end %>
-
+  <%= form_for @comment do |f| %>
+    <%= f.hidden_field :parent_id %>
+    <p>
+      <%= f.label :body, "New Comment" %><br />
+      <%= f.text_area :body, :rows => 8 %>
+    </p>
+  <% end %>
 <% end %>
 
 <% content_for :sidebar do %>
