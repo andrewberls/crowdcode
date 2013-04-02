@@ -14,13 +14,11 @@ changeCounter = (dir, amt=1) ->
 
 
 $ ->
-  $up   = $('.vote-up')
-  $down = $('.vote-down')
   activeClass = 'vote-active'
 
   $('.vote-up, .vote-down').click ->
     dir = $(@).attr('id')
-    $other   = if dir == 'up' then $down else $up
+    $other   = if dir == 'up' then $('.vote-down') else $('.vote-up')
     opposite = $other.attr('id')
 
     if $(@).hasClass(activeClass)
