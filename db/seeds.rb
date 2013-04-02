@@ -17,6 +17,8 @@ rev1 = Review.new(title: 'Need some help on a Ruby function', body: %Q{
 
 rev1.user = admin_user
 rev1.save!
+rev1.rid = 'abcdef'
+rev1.save!
 
 rev1.comments.create(body: %Q{
   You could use default arguments, such as <code>def some_method(opts={})</code> for starters!
