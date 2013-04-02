@@ -31,11 +31,12 @@ $ ->
         # Switch - vote DIR by 2
         vote(dir)
         changeCounter(dir, 2)
+
       else
         # No previous vote - vote DIR by 1
         vote(dir)
         changeCounter(dir)
 
-      $('.vote').removeClass(activeClass)
+      $('.vote-up, .vote-down').removeClass(activeClass)
       $(@).addClass(activeClass)
     return false

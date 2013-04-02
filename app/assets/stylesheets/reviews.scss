@@ -11,16 +11,13 @@
   top: 10px; left: -80px;
   text-align: center;
 
-  .vote {
-    display: block;
-  }
-
   $arrow-color: white;
   $arrow-size: 12px;
   $spacer: 7px;
   $active-color: red;
   .vote-up,
   .vote-down {
+    display: block;
     height: 0;
     width: 0;
   }
@@ -30,9 +27,7 @@
     border-bottom: $arrow-size solid $arrow-color;
     margin-bottom: $spacer;
 
-    &.vote-active {
-      border-bottom-color: $active-color;
-    }
+    &.vote-active { border-bottom-color: $active-color; }
   }
 
   .vote-down {
@@ -41,8 +36,6 @@
     border-top: $arrow-size solid $arrow-color;
     margin-top: $spacer;
 
-    &.vote-active {
-      border-top-color: $active-color;
-    }
+    &.vote-active { border-top-color: $active-color; }
   }
 }
