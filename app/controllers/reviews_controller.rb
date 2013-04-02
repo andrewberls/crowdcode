@@ -37,10 +37,8 @@ class ReviewsController < ApplicationController
   def votes
     respond_to do |format|
       format.json {
-        rid = params[:id]
-        dir = params[:dir]
-        current_user.vote(rid, dir)
-        return render json: { votes: Review.find_by_rid(rid).votes }
+        current_user.vote(params[:id], params[:dir])
+        return render json: {}
       }
     end
   end
