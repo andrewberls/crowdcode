@@ -1,5 +1,5 @@
 <% content_for :main do %>
-  <%= form_for @review do |f| %>
+  <%= form_for @review, html: { class: 'form-validate' } do |f| %>
     <%= f.label :title %>
     <%= f.text_field :title, autofocus: true %>
 
