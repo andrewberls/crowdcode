@@ -22,7 +22,7 @@ class ReviewsController < ApplicationController
   end
 
   def show
-    @vote = current_user.vote_for(@review.rid)
+    @vote = current_user.vote_for(@review.rid) if signed_in?
     @comment = Comment.new
   end
 

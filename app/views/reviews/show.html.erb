@@ -1,12 +1,18 @@
 <% provide(:title, @review.title) %>
 
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "reviews" %>
+<% end %>
+
 <% content_for :main do %>
   <div class="review" data-rid="<%= @review.rid %>">
-    <div class="votes-container">
-      <a href="#" id="up" class="vote-up <%= 'vote-active' if @vote == 'up' %>"></a>
-      <span class="votes"><%= @review.votes %></span>
-      <a href="#" id="down" class="vote-down <%= 'vote-active' if @vote == 'down' %>"></a>
-    </div>
+    <% if signed_in? %>
+      <div class="votes-container">
+        <a href="#" id="up" class="vote-up <%= 'vote-active' if @vote == 'up' %>"></a>
+        <span class="votes"><%= @review.votes %></span>
+        <a href="#" id="down" class="vote-down <%= 'vote-active' if @vote == 'down' %>"></a>
+      </div>
+    <% end %>
 
     <h2><%= @review.title %></h2>
     <%= raw @review.body %>
@@ -17,17 +23,19 @@
     <div style="border-bottom:1px solid #ddd; padding: 10px 10px 20px; margin-bottom: 10px;">
       <p style="margin-bottom: 10px;"><%= raw comment.body %></p>
       <div class="created_at"><%= comment.created_at.strftime("%B %d, %Y") %></div>
-      </div>
     </div>
   <% end %>
-  <%= form_for @comment do |f| %>
-    <%= f.hidden_field :parent_id %>
-    <p>
-      <%= f.label :body, "New Comment" %><br />
-      <%= f.text_area :body, :rows => 8 %>
-    </p>
+
+  <%= form_tag comments_review_path(@review.rid), remote: true, html: { style: 'outline: 1px solid red' } do |f| %>
+    <%= hidden_field_tag :parent_id %>
+
+    <%= label_tag :body, "New Comment" %>
+    <%= text_area_tag :body %>
+
+    <%= submit_tag 'Submit', class: 'btn btn-blue' %>
   <% end %>
 <% end %>
+
 
 <% content_for :sidebar do %>
   <p>Something useful here</p>
