@@ -20,12 +20,7 @@
 
   <div class="comments-container">
     <h2>Comments</h2>
-    <% @review.comments.each do |comment| %>
-      <div class="comment">
-        <div class="comment-body"><%= raw comment.body %></div>
-        <div class="comment-date"><%= comment.created_at.strftime("%B %d, %Y") %></div>
-      </div>
-    <% end %>
+    <%= render @review.comments %>
   </div>
 
   <%= form_tag comments_review_path(@review.rid), remote: true do %>
