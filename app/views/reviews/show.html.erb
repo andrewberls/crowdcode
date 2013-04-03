@@ -18,13 +18,15 @@
     <%= raw @review.body %>
   </div>
 
-  <h2 style="margin-top:40px; border-bottom:1px solid #ddd; padding-bottom:5px">Comments</h2>
-  <% @review.comments.each do |comment| %>
-    <div style="border-bottom:1px solid #ddd; padding: 10px 10px 20px; margin-bottom: 10px;">
-      <p style="margin-bottom: 10px;"><%= raw comment.body %></p>
-      <div class="created_at"><%= comment.created_at.strftime("%B %d, %Y") %></div>
-    </div>
-  <% end %>
+  <div class="comments-container">
+    <h2>Comments</h2>
+    <% @review.comments.each do |comment| %>
+      <div class="comment">
+        <div class="comment-body"><%= raw comment.body %></div>
+        <div class="comment-date"><%= comment.created_at.strftime("%B %d, %Y") %></div>
+      </div>
+    <% end %>
+  </div>
 
   <%= form_tag comments_review_path(@review.rid), remote: true do %>
     <%= hidden_field_tag :parent_id %>
