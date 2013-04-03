@@ -31,7 +31,6 @@ $ ->
         # Switch - vote DIR by 2
         vote(dir)
         changeCounter(dir, 2)
-
       else
         # No previous vote - vote DIR by 1
         vote(dir)
