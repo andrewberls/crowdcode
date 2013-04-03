@@ -1,5 +1,6 @@
-<% if comment.valid? %>
-  $(".comments-container").append("<%= j render @comment %>");
+<% if @comment.valid? %>
+  $("#body").val('');
+  $(".comments-container").append("<%= j render 'reviews/comment', comment: @comment %>");
   console.log("Comment was posted");
 <% else %>
   console.log("Comment was not posted");

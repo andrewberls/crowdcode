@@ -20,7 +20,7 @@
 
   <div class="comments-container">
     <h2>Comments</h2>
-    <%= render @review.comments %>
+    <%= render :partial => 'reviews/comment', :collection => @review.comments %>
   </div>
 
   <%= form_tag comments_review_path(@review.rid), remote: true do %>
