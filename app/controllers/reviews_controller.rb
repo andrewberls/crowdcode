@@ -35,11 +35,27 @@ class ReviewsController < ApplicationController
   def destroy
   end
 
+  # POST /reviews/:rid/votes
   def votes
     respond_to do |format|
       format.json {
         current_user.vote(params[:id], params[:dir])
         return render json: {}
+      }
+    end
+  end
+
+  # POST /reviews/:rid/comments
+  def comments
+    @review  = Review.find_by_rid(params[:id])
+    @comment = @review.comments.build(parent_id: params[:parent_id], body: params[:body])
+
+    # TODO: handle @comment.save
+    # TODO: wire up ajax handler to append new comment with JS
+
+    respond_to do |format|
+      format.js {
+
       }
     end
   end
