@@ -26,7 +26,7 @@
     </div>
   <% end %>
 
-  <%= form_tag comments_review_path(@review.rid), remote: true, html: { style: 'outline: 1px solid red' } do |f| %>
+  <%= form_tag comments_review_path(@review.rid), remote: true do %>
     <%= hidden_field_tag :parent_id %>
 
     <%= label_tag :body, "New Comment" %>
