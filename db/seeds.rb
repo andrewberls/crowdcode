@@ -26,3 +26,6 @@ rev1.comments.create(body: %Q{
 rev1.comments.create(body: %Q{
   I would initialize the test array using bracket notation, like <code>test = []</code>
 })
+rev1.comments.create(body: %Q{
+  This is a test comment
+})
