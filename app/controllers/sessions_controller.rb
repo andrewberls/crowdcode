@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
     omniauth = request.env["omniauth.auth"]
     @user = User.find_by_github_uid(omniauth["uid"]) || User.create_from_omniauth(omniauth)
     sign_in(@user)
-    redirect_to root_url
+    redirect_to reviews_path
   end
 
   def failure_from_github
