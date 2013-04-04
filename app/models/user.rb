@@ -30,6 +30,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def github_authenticated?
+    github_uid.present?
+  end
+
   # Redis key for vote on a specific review
   def votes_key(rid)
     "users:#{id}:votes:#{rid}"
@@ -69,7 +73,7 @@ class User < ActiveRecord::Base
   # Validate password for non-oauth users (i.e., 'regular' accounts)
   def password_for_non_oauth
     password_invalid = password_digest.blank? || password.length < 5
-    if github_uid.blank? && password_invalid
+    if !github_authenticated? && password_invalid
       errors.add(:password, "must be at least 5 characters")
     end
   end
