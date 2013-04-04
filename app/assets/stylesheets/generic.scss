@@ -26,6 +26,7 @@ body > .container {
 
 .separator {
   text-align: center;
+  margin-bottom: 24px;
 
   hr {
     border: none;
@@ -38,7 +39,6 @@ body > .container {
     background-color: white;
     color: $light-text;
     font-weight: bold;
-    margin-bottom: 20px;
     padding: 0 13px;
   }
 }
