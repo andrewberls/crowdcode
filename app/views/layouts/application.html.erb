@@ -6,6 +6,7 @@
   <%= stylesheet_link_tag :crowdcode %>
   <%= csrf_meta_tags %>
   <!-- <link rel="shortcut icon" type="image/ico" href="/favicon.gif" /> -->
+  <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 
   <script type="text/javascript">
     // GA here
@@ -13,13 +14,13 @@
 </head>
 <body>
 
+  <% on_login   = params[:controller] == 'sessions' %>
+  <% main_class = on_login ? '' : 'main' %>
   <% if current_page? root_path %>
     <%= yield %>
   <% else %>
-    <%= render 'shared/header' %>
+    <%= render 'shared/header' unless on_login %>
 
-    <% on_login   = params[:controller] == 'sessions' %>
-    <% main_class = on_login ? '' : 'main' %>
     <div class="container <%= 'container-white' unless on_login %>">
       <% if content_for? :sidebar %>
         <!--

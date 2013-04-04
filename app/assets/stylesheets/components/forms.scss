@@ -102,21 +102,17 @@ form {
   background-color: white;
   border: 1px solid $med-gray;
   margin-top: 25px;
-  padding: 15px 30px;
+  padding: 15px 30px 25px;
 
   .github-container {
-    text-align: center;
-    border-bottom: 1px solid $med-gray;
-    margin-bottom: 20px;
-    padding-bottom: 5px;
+    margin-bottom: 10px;
 
-    & + p {
-      color: $light-text;
-      font-weight: bold;
-      margin-bottom: 20px;
-      text-align: center;
-
+    img {
+      display: inline-block;
+      margin-top: -2px;
+      margin-right: 5px;
     }
+
   }
 
   input[type='submit'] {
@@ -125,5 +121,3 @@ form {
     padding: 10px 12px;
   }
 }
-
-

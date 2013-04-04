@@ -11,7 +11,6 @@ body {
 }
 
 body > .container {
-  // margin: 25px auto 0;
   margin: 0 auto;
 
   &.container-white { background-color: white; }
@@ -24,6 +23,25 @@ body > .container {
 
 .left { float: left }
 .right { float: right }
+
+.separator {
+  text-align: center;
+
+  hr {
+    border: none;
+    border-bottom: 1px solid $med-gray;
+    margin-bottom: -0.7em;
+  }
+
+  p {
+    display: inline-block;
+    background-color: white;
+    color: $light-text;
+    font-weight: bold;
+    margin-bottom: 20px;
+    padding: 0 13px;
+  }
+}
 
 
 nav {

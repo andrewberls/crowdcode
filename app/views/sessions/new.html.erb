@@ -3,14 +3,21 @@
 <div class="row">
   <div class="span-6 offset-5">
 
-    <h1 class="page-header">Sign in to CrowdCode</h1>
+    <h1 class="page-header">CrowdCode</h1>
 
     <div class="login-container">
       <div class="github-container">
-        <a href="/auth/github" class="btn-auth btn-github">Sign in with GitHub</a>
+        <a href="/auth/github" class="btn-auth btn-github btn-full">
+          <%= image_tag "github-icon.png" %>
+          Sign in with GitHub
+        </a>
       </div>
 
-      <p>Or with a CrowdCode account:</p>
+
+        <div class="separator">
+          <hr />
+          <p>Or with a CrowdCode account:</p>
+        </div>
 
       <%= form_tag sessions_path, class: "form-validate" do %>
 
@@ -35,9 +42,6 @@
       </span>-->
 
     </div>
-
-
-
 
   </div>
 </div>
