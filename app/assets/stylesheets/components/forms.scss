@@ -1,17 +1,16 @@
 form {
   @include clearfix;
 
-  .form-title,
-  .form-title-small {
-    margin-bottom: 15px;
-  }
+  .form-title, .form-title-small { margin-bottom: 15px; }
   .form-title { font-size: 2em; }
   .form-title-small { font-size: 1.2em; }
 
   label {
-    font-size: 1.1em;
-    display: inline-block;
-    margin-bottom: 5px;
+    display: none;
+    // color: darken($light-text, 15);
+    // font-size: 1.1em;
+    // display: inline-block;
+    // margin-bottom: 5px;
   }
 
   input:not([type="submit"]),
@@ -39,24 +38,19 @@ form {
 
   input[type="submit"] { float: right; }
 
-  label.checkbox {
-    display: inline-block;
-    margin: 5px 0 0;
-  }
-  input[type="checkbox"] {
-    margin: -2px 5px 0 0;
-    width: auto;
-  }
+  // label.checkbox {
+  //   display: inline-block;
+  //   margin: 5px 0 0;
+  // }
+  // input[type="checkbox"] {
+  //   margin: -2px 5px 0 0;
+  //   width: auto;
+  // }
 
   &.form-invisible {
     border: none;
     margin: 0;
     padding: 0;
-  }
-
-  .field-disabled {
-    color: darken($med-gray, 35);
-    margin-bottom: 15px;
   }
 
   .field-error { border: 1px solid #D34332 !important; }
@@ -99,3 +93,37 @@ form {
 //   float: right;
 //   margin: -23px 0 0;
 // }
+
+
+
+
+.login-container {
+  @include border-radius;
+  background-color: white;
+  border: 1px solid $med-gray;
+  margin-top: 25px;
+  padding: 15px 30px;
+
+  .github-container {
+    text-align: center;
+    border-bottom: 1px solid $med-gray;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+
+    & + p {
+      color: $light-text;
+      font-weight: bold;
+      margin-bottom: 20px;
+      text-align: center;
+
+    }
+  }
+
+  input[type='submit'] {
+    font-size: 1.1em;
+    margin-top: 10px;
+    padding: 10px 12px;
+  }
+}
+
+

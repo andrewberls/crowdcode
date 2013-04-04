@@ -13,31 +13,37 @@
 
   $arrow-color: white;
   $arrow-size: 12px;
-  $spacer: 7px;
   $active-color: red;
   .vote-up,
   .vote-down {
-    display: block;
-    height: 0;
-    width: 0;
-  }
-  .vote-up {
     border-left: $arrow-size solid transparent;
     border-right: $arrow-size solid transparent;
-    border-bottom: $arrow-size solid $arrow-color;
-    margin-bottom: $spacer;
+    display: block;
+    height: 0;
+    margin-bottom: 7px;
+    width: 0;
 
     &.vote-active { border-bottom-color: $active-color; }
   }
+  .vote-up { border-bottom: $arrow-size solid $arrow-color; }
+  .vote-down { border-top: $arrow-size solid $arrow-color; }
+}
 
-  .vote-down {
-    border-left: $arrow-size solid transparent;
-    border-right: $arrow-size solid transparent;
-    border-top: $arrow-size solid $arrow-color;
-    margin-top: $spacer;
 
-    &.vote-active { border-top-color: $active-color; }
+.comments-container {
+  h2 {
+    border-bottom: 1px solid $med-gray;
+    margin-top: 40px;
+    padding-bottom: 5px;
   }
+}
+.comment {
+  border-bottom: 1px solid $med-gray;
+  margin-bottom: 10px;
+  padding: 10px 10px 20px;
+
+  .comment-body { margin-bottom: 10px; }
+  .comment-date {}
 
   .nested_comments {
     margin-left: 30px;
@@ -48,19 +54,3 @@
   }
 }
 
-
-.comments-container {
-  h2 {
-    border-bottom: 1px solid #ddd;
-    margin-top: 40px;
-    padding-bottom: 5px;
-  }
-}
-.comment {
-  border-bottom: 1px solid #ddd;
-  margin-bottom: 10px;
-  padding: 10px 10px 20px;
-
-  .comment-body { margin-bottom: 10px; }
-  .comment-date {}
-}

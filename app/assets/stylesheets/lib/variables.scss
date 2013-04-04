@@ -2,13 +2,10 @@ $baseFontFamily: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $codeFontFamily: Menlo, Monaco, Consolas, 'Courier New', monospace;
 
 $light-gray: #f9f9f9;
-$med-gray:   #ccc;
+$med-gray:   #ddd;
 $dark-gray:  #2c2c2c;
 $gray-text:  #404040;
-$light-text: lighten($gray-text, 15);
-
-// $blue: #119EE7;
-
+$light-text: lighten($gray-text, 20);
 
 $blue:  #3a84c5;
 $aqua:  #2ba6cb;

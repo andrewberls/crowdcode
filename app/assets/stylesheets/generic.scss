@@ -13,7 +13,8 @@ body {
 body > .container {
   // margin: 25px auto 0;
   margin: 0 auto;
-  background-color: white;
+
+  &.container-white { background-color: white; }
 }
 
 @include mobile {
@@ -21,11 +22,15 @@ body > .container {
 }
 
 
-//-- LIB CLASSES
-//------------------------------------
 .left { float: left }
 .right { float: right }
 
+
+nav {
+  @include border-box;
+  border-bottom: 1px solid $med-gray;
+  padding: 25px;
+}
 
 .main,
 .sidebar {
@@ -33,7 +38,7 @@ body > .container {
 }
 
 .main {
-  border-right: 1px solid #ddd;
+  border-right: 1px solid $med-gray;
   padding: 15px 25px 15px 30px;
 }
 

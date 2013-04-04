@@ -18,15 +18,24 @@
   <% else %>
     <%= render 'shared/header' %>
 
-    <div class="container">
+    <% on_login   = params[:controller] == 'sessions' %>
+    <% main_class = on_login ? '' : 'main' %>
+    <div class="container <%= 'container-white' unless on_login %>">
       <% if content_for? :sidebar %>
+        <!--
         <div class="row">
-          <div class="span-12 main"><%= yield :main %></div>
+          <div class="span-16">
+            <nav>Some nav links here</nav>
+          </div>
+        </div>
+        -->
+        <div class="row">
+          <div class="span-12 <%= main_class %>"><%= yield :main %></div>
           <div class="span-4 sidebar"><%= yield :sidebar %></div>
         </div>
       <% else %>
         <div class="row">
-          <div class="span-16 main"><%= yield %></div>
+          <div class="span-16 <%= main_class %>"><%= yield %></div>
         </div>
       <% end %>
     </div>
