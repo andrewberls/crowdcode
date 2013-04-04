@@ -1,7 +1,8 @@
 class Review < ActiveRecord::Base
-  attr_accessible :title, :body
 
-  belongs_to :user
+  attr_accessible :title, :body, :author
+
+  belongs_to :author, class_name: 'User'
 
   validates :title, presence: true
 

@@ -16,6 +16,9 @@ class User < ActiveRecord::Base
     format: { with: valid_email_regex },
     uniqueness: { case_sensitive: false }
 
+  has_many :reviews
+  has_many :comments
+
   before_create :generate_auth_token
 
   def self.create_from_omniauth(omniauth)

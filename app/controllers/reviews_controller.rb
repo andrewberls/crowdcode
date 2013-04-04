@@ -48,7 +48,11 @@ class ReviewsController < ApplicationController
   # POST /reviews/:rid/comments
   def comments
     @review  = Review.find_by_rid(params[:id])
-    @comment = @review.comments.create(parent_id: params[:parent_id], body: params[:body])
+    @comment = @review.comments.create do |cmt|
+      cmt.parent_id = params[:parent_id]
+      cmt.body   = params[:body]
+      cmt.author = current_user
+    end
 
     # TODO: handle @comment.save
     # TODO: wire up ajax handler to append new comment with JS

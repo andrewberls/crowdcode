@@ -16,6 +16,10 @@
 
     <h2><%= @review.title %></h2>
     <%= raw @review.body %>
+
+    <div class="review-author">
+      By: <%= @review.author.username %>
+    </div>
   </div>
 
   <div class="comments-container">

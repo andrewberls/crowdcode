@@ -38,5 +38,6 @@
 
 
 footer {
+  @include clearfix;
   text-align: center;
 }
