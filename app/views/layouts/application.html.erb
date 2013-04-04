@@ -14,14 +14,18 @@
 </head>
 <body>
 
-  <% on_login   = params[:controller] == 'sessions' %>
-  <% main_class = on_login ? '' : 'main' %>
+  <%
+    excluded_paths   = [signup_path] # root_path, etc
+    on_excluded_page = params[:controller] == 'sessions' || excluded_paths.any? { |p| current_page?(p) }
+    main_class       = on_excluded_page ? '' : 'main'
+  %>
+
+  <%= render 'shared/header', show_bar: !on_excluded_page %>
+
   <% if current_page? root_path %>
     <%= yield %>
   <% else %>
-    <%= render 'shared/header' unless on_login %>
-
-    <div class="container <%= 'container-white' unless on_login %>">
+    <div class="container <%= 'container-white' unless on_excluded_page %>">
       <% if content_for? :sidebar %>
         <!--
         <div class="row">

@@ -104,3 +104,26 @@ header {
   // background-color: #0074AE;
   // background-color: #005985;
 }
+
+
+
+
+
+.ribbon {
+  @include clearfix;
+
+  .segment {
+    height: 5px;
+    float: left;
+    width: 10%;
+  }
+  .segment-1 { background-color: $deep-orange; }
+  .segment-2 { background-color: $blue; }
+  .segment-3 { background-color: $light-orange; }
+  .segment-4 { background-color: $purple; }
+  .segment-5 { background-color: $aqua; }
+}
+
+header {
+
+}

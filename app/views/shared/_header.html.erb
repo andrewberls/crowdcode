@@ -1,9 +1,19 @@
-<header>
-  <div class="container">
-    <div class="row">
-      <div class="span-16">
-        CrowdCode
+<div class="ribbon">
+  <% 2.times do %>
+    <% 1.upto(5) do |i| %>
+      <div class="segment segment-<%= i%>"></div>
+    <% end %>
+  <% end %>
+</div>
+
+<% if show_bar %>
+  <header>
+    <div class="container">
+      <div class="row">
+        <div class="span-16">
+          CrowdCode
+        </div>
       </div>
     </div>
-  </div>
-</header>
+  </header>
+<% end %>
