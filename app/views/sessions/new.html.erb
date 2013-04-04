@@ -7,7 +7,7 @@
 
     <div class="login-container">
       <div class="github-container">
-        <a href="/auth/github" class="btn-auth btn-github btn-full">
+        <a href="/auth/github" class="btn btn-full btn-github">
           <%= image_tag "github-icon.png" %>
           Sign in with GitHub
         </a>
@@ -32,7 +32,7 @@
         <!-- </span> -->
         <%= password_field_tag :password, '', placeholder: 'Password' %>
 
-        <%= submit_tag "Sign in", class: "btn btn-blue btn-full" %>
+        <%= submit_tag "Sign in", class: "btn btn-full btn-blue" %>
 
       <% end %>
 
