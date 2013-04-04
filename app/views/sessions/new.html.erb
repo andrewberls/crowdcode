@@ -7,17 +7,13 @@
 
     <div class="login-container">
       <div class="github-container">
-        <a href="/auth/github" class="btn btn-full btn-github">
-          <%= image_tag "github-icon.png" %>
-          Sign in with GitHub
-        </a>
+        <%= github_signin_button %>
       </div>
 
-
-        <div class="separator">
-          <hr />
-          <p>Or with a CrowdCode account:</p>
-        </div>
+      <div class="separator">
+        <hr />
+        <p>Or with a CrowdCode account:</p>
+      </div>
 
       <%= form_tag sessions_path, class: "form-validate" do %>
 

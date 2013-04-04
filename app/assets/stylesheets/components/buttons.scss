@@ -279,4 +279,17 @@ button.btn {
     background-image: -o-linear-gradient(#599bdc, #3072b3);
     background-image: linear-gradient(#599bdc, #3072b3);
   }
+
+  // TODO: this is gross
+  &:before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: 14px; left: 57px;
+    width: 19px;  height: 19px;
+    background: url('/assets/github-icon.png') no-repeat;
+  }
+  &:hover:before, &:focus:before, &:active:before {
+    background: url('/assets/github-icon-white.png') no-repeat;
+  }
 }
