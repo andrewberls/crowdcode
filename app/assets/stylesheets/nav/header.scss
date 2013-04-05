@@ -20,10 +20,14 @@ header {
   padding: 17px;
 
   .logo {
-    color: #bbb;
     float: left;
     font-size: 1.7em;
     margin-top: 2px;
+
+    a {
+      color: #bbb;
+      &:hover { text-decoration: none; }
+    }
   }
 
   .search-container {

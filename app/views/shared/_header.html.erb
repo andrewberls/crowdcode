@@ -12,7 +12,7 @@
       <div class="row">
 
         <div class="span-16">
-          <div class="logo">CrowdCode</div>
+          <div class="logo"><%= link_to "CrowdCode", reviews_path %></div>
 
           <% if signed_in? %>
             <div class="header-links">
@@ -22,8 +22,8 @@
 
 
           <div class="search-container">
-            <%= form_tag "#" do %>
-              <%= text_field_tag "Search" %>
+            <%= form_tag search_reviews_path do %>
+              <%= text_field_tag 'search', nil, :placeholder => 'Search' %>
               <%= submit_tag 'Search', class: 'btn btn-secondary' %>
             <% end %>
           </div>
