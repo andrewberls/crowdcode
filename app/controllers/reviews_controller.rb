@@ -8,10 +8,12 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = Review.new(params[:review])
+    @review = Review.new(params[:review]) do |r|
+      r.author = current_user
+    end
 
     if @review.save
-      redirect_to @review
+      redirect_to review_path(@review.rid)
     else
       flash[:error] = "Something went wrong!"
       render :new
