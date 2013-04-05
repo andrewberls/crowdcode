@@ -10,9 +10,26 @@
   <header>
     <div class="container">
       <div class="row">
+
         <div class="span-16">
-          CrowdCode
+          <div class="logo">CrowdCode</div>
+
+          <% if signed_in? %>
+            <div class="header-links">
+              Hello, <%= link_to current_user.username, "#" %>
+            </div>
+          <% end %>
+
+
+          <div class="search-container">
+            <%= form_tag "#" do %>
+              <%= text_field_tag "Search" %>
+              <%= submit_tag 'Search', class: 'btn btn-secondary' %>
+            <% end %>
+          </div>
+
         </div>
+
       </div>
     </div>
   </header>

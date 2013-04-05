@@ -145,7 +145,7 @@ input[type="submit"] {
 
   &:hover,
   &:focus {
-    color: inherit;
+    color: $gray-text;
   }
 
   &:hover { background-color: darken($bg, 3); }

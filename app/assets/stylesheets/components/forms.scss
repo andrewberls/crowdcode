@@ -95,14 +95,22 @@ form {
 // }
 
 
-
-
-.login-container {
+.login-container,
+.signup-container {
   @include border-radius;
   background-color: white;
   border: 1px solid $med-gray;
   margin-top: 25px;
   padding: 15px 30px 25px;
+}
+
+
+.login-container {
+  // @include border-radius;
+  // background-color: white;
+  // border: 1px solid $med-gray;
+  // margin-top: 25px;
+  // padding: 15px 30px 25px;
 
   .github-container { margin-bottom: 14px; }
 
