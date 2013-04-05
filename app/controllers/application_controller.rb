@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery
 
-  ACCESS_DENIED_PATH = '/reviews' # TODO
+  ACCESS_DENIED_PATH = '/reviews'
 
   helper_method :current_user, :signed_in?, :login_user
 
@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
       format.html {
         unless signed_in?
           flash[:notice] = "You must be signed in for that."
-          session[:return_to] = request.fullpath
+          store_return_url
           return redirect_to login_path
         end
       }
@@ -36,6 +36,10 @@ class ApplicationController < ActionController::Base
     else
       cookies[:auth_token] = user.auth_token
     end
+  end
+
+  def store_return_url(path=request.fullpath)
+    session[:return_to] = path
   end
 
   def reject_unauthorized(authorized=false, options={})
