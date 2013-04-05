@@ -9,9 +9,11 @@ class ApplicationController < ActionController::Base
   def must_be_signed_in
     respond_to do |format|
       format.html {
-        authorized = signed_in?
-        session[:return_to] = request.fullpath unless authorized
-        reject_unauthorized(authorized, path: login_path)
+        unless signed_in?
+          flash[:notice] = "You must be signed in for that."
+          session[:return_to] = request.fullpath
+          return redirect_to login_path
+        end
       }
       format.json {}
       format.js {}

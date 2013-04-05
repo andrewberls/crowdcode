@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
 
   def new
-    # return redirect_to reviews_path if signed_in?
+    return redirect_to reviews_path if signed_in?
   end
 
   def create
@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
     omniauth = request.env["omniauth.auth"]
     @user = User.find_by_github_uid(omniauth["uid"]) || User.create_from_omniauth(omniauth)
     sign_in(@user)
-    redirect_to reviews_path
+    return redirect_to_return_or_path(reviews_path)
   end
 
   def failure_from_github

@@ -5,6 +5,8 @@
 
     <h1 class="page-header">CrowdCode</h1>
 
+    <%= content_tag :h3, flash[:notice], class: 'auth-error' if flash[:notice] %>
+
     <div class="login-container">
       <div class="github-container">
         <%= github_signin_button %>
