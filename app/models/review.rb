@@ -4,7 +4,10 @@ class Review < ActiveRecord::Base
 
   belongs_to :author, class_name: 'User'
 
-  validates :title, presence: true
+  # TODO: improve these
+  validates :title, presence: true, length: { minimum: 5 }
+  validates :body, presence: true
+  validates :author, presence: true
 
   has_many :comments
 
