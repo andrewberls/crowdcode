@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
 
-  before_filter :must_be_signed_in, except: [:index, :show]
+  before_filter :must_be_signed_in, except: [:index, :show, :search]
   before_filter :find_review, only: [:show]
 
   def new
@@ -49,21 +49,37 @@ class ReviewsController < ApplicationController
 
   # POST /reviews/:rid/comments
   def comments
-    @review  = Review.find_by_rid(params[:id])
-    @comment = @review.comments.create do |cmt|
-      cmt.parent_id = params[:parent_id]
-      cmt.body   = params[:body]
-      cmt.author = current_user
-    end
+    @review   = Review.find_by_rid(params[:id])
+    parent_id = params[:parent_id]
 
-    # TODO: handle @comment.save
-    # TODO: wire up ajax handler to append new comment with JS
+    if parent_id.present?
+      # Replying to a comment
+      raise "parent id: #{parent_id.inspect}"
+    else
+      # Posting a parent comment
+      @comment = @review.comments.create do |cmt|
+        cmt.parent_id = params[:parent_id]
+        cmt.body   = params[:body]
+        cmt.author = current_user
+      end
+    end
 
     respond_to do |format|
-      format.js {
-
-      }
+      format.js
     end
+  end
+
+  def search
+    if request.post?
+      return redirect_to search_reviews_path(q: params[:q])
+    else
+      # TODO: weights
+      @search = Review.search do
+        fulltext(params[:q])
+        paginate(page: params[:page])
+      end
+    end
+
   end
 
   private

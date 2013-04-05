@@ -15,6 +15,13 @@ gem 'thin'
 
 # gem 'heroku'
 
+# Search
+gem 'sunspot_rails'
+gem 'sunspot_solr' # optional pre-packaged Solr distribution for use in development
+
+# Pagination
+gem 'will_paginate'
+
 # Threaded comments
 gem 'ancestry'
 
@@ -31,6 +38,9 @@ gem 'dalli'
 
 # API serializers
 # gem 'active_model_serializers', :github => 'rails-api/active_model_serializers'
+
+# Seed data generation
+gem 'literate_randomizer'
 
 group :assets do
   gem 'sass-rails'

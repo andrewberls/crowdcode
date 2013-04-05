@@ -1,0 +1,25 @@
+<% results = @search.results %>
+
+<!-- TODO: results.count is returning a paginated count, not the total -->
+<h2><%= results.count %> results</h2>
+
+<% if results.blank? %>
+  <p>No results matched that search.</p>
+<% else %>
+  <p><%#= @results.inspect %></p>
+
+  <div class="results">
+    <!-- When results are retrieved, stored field values are available in Hit objects, and can be accessed without making a database round-trip -->
+    <% @search.each_hit_with_result do |hit, review| %>
+      <div class="result" style="outline: 1px solid red; margin-bottom: 25px">
+        <h3><%= review.title %></h3>
+        <div class="score" style="color:red; margin-bottom:3px;">Score: <%= hit.score %></div>
+        <p><%= raw review.body %></p>
+      </div>
+    <% end -%>
+  </div>
+
+  <div class="pagination" style="outline: 1px solid green;">
+    <%= will_paginate(@search.hits) %>
+  </div>
+<% end %>

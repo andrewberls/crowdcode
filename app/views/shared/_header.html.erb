@@ -10,26 +10,26 @@
   <header>
     <div class="container">
       <div class="row">
-
         <div class="span-16">
+
           <div class="logo"><%= link_to "CrowdCode", reviews_path %></div>
 
-          <% if signed_in? %>
-            <div class="header-links">
+          <div class="header-links">
+            <% if signed_in? %>
               Hello, <%= link_to current_user.username, "#" %>
-            </div>
-          <% end %>
-
+            <% else %>
+              <%= link_to "Sign In", login_path %>
+            <% end %>
+          </div>
 
           <div class="search-container">
             <%= form_tag search_reviews_path do %>
-              <%= text_field_tag 'search', nil, :placeholder => 'Search' %>
+              <%= text_field_tag 'q', nil, :placeholder => 'Search' %>
               <%= submit_tag 'Search', class: 'btn btn-secondary' %>
             <% end %>
           </div>
 
         </div>
-
       </div>
     </div>
   </header>

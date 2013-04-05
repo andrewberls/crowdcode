@@ -13,6 +13,17 @@ class Review < ActiveRecord::Base
 
   before_create :generate_rid
 
+  searchable do
+    text :title, :body
+    text :author do
+      author.username
+    end
+    text :comments do
+      comments.pluck(:body)
+    end
+    time :created_at
+  end
+
   # Cache the redis key for votes
   # Ex: reviews:2:votes
   def votes_key
