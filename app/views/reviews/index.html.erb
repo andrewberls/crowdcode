@@ -1,8 +1,15 @@
 <% content_for :main do %>
 
-  <div style="outline:1px solid red">
+  <div style="margin-bottom: 30px;">
+    <%= link_to "Post Review", new_review_path, class: 'btn btn-large btn-aqua' %>
+  </div>
+
+  <div>
     <% Review.all.each do |r| %>
-      <%= link_to r.title, review_path(r.rid) %>
+      <div style="outline: 1px solid red; margin-bottom: 15px; padding: 3px;">
+        <%= link_to r.title, review_path(r.rid) %>
+        <span style="float: right; color: #777"><%= r.comments.count %> comments</span>
+      </div>
     <% end %>
   </div>
 
