@@ -16,9 +16,8 @@
 header {
   background-color: white;
   border-bottom: 1px solid $med-gray;
-  // padding: 20px;
-  padding: 17px;
   font-size: 1.1em;
+  padding: 17px;
 
   .logo {
     color: #bbb;
@@ -27,15 +26,6 @@ header {
     margin-top: 2px;
   }
 
-  .header-links {
-    color: #999;
-    float: right;
-    margin: 8px 0 0 40px;
-  }
-
-
-
-
   .search-container {
     @include border-radius;
     border: 1px solid $med-gray;
@@ -43,27 +33,22 @@ header {
     padding: 4px;
     width: 25em;
 
-    input {
-      float: left;
-      height: 25px;
-    }
+    input { height: 25px; }
 
     input[type='text'] {
-      font-size: 1em;
       border: none;
+      font-size: 1em;
       margin: 0 10px 0 0;
       padding: 0;
       width: 19em;
     }
 
-    input[type='submit'] {
-      padding: 3px 9px;
-    }
+    input[type='submit'] { padding: 3px 9px; }
   }
 
-
-
-
-
-
+  .header-links {
+    color: #999;
+    float: right;
+    margin: 8px 0 0 40px;
+  }
 }
