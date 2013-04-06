@@ -40,18 +40,22 @@ $ ->
       $(@).addClass(activeClass)
     return false
 
-# Generate a form from id
-generate_form = (id) ->
-  """<form action="/reviews/comments/" data-remote="true" method="post" >
-    <input id="parent_id" name="parent_id" type="hidden" value="#{id}" />
+
+
+# Generate a form to reply to a comment
+reply_form = (parent_id) ->
+  """
+  <form action="/reviews/comments/" data-remote="true" method="post" class="comment-reply-form">
+    <input type="hidden" name="parent_id" value="#{parent_id}" />
     <textarea name="body"></textarea>
     <input class="btn btn-blue" type="submit" value="Submit" />
-  </form>"""
-  
+  </form>
+  """
+
 
 $('.reply-button').click ->
   $link = $(this)
   parent_id = $link.parent().parent().data('id')
-  form = generate_form(parent_id)
+  form = reply_form(parent_id)
   $(".comments-container").append(form)
   return false
