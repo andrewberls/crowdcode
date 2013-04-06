@@ -5,6 +5,8 @@ class Comment < ActiveRecord::Base
   belongs_to :review
   belongs_to :author, class_name: 'User'
 
+  validates :body, presence: true
+
   has_ancestry
 
 end
