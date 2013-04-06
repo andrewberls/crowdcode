@@ -54,8 +54,7 @@ reply_form = (parent_id) ->
 
 
 $(document.body).delegate '.reply-button', 'click', ->
-  $link   = $(this)
-  $parent = $link.parent().parent()
+  $parent = $(@).parent().parent()
   form    = reply_form($parent.data('id'))
   $parent.append(form)
   return false
