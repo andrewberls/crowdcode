@@ -29,11 +29,17 @@
     height: 0;
     margin-bottom: 7px;
     width: 0;
+  }
 
+  .vote-up {
+    border-bottom: $arrow-size solid $arrow-color;
     &.vote-active { border-bottom-color: $active-color; }
   }
-  .vote-up { border-bottom: $arrow-size solid $arrow-color; }
-  .vote-down { border-top: $arrow-size solid $arrow-color; }
+
+  .vote-down {
+    border-top: $arrow-size solid $arrow-color;
+    &.vote-active { border-top-color: $active-color; }
+  }
 }
 
 
@@ -69,4 +75,3 @@
   .nested_comments { margin-left: 30px; }
   .nested_comments .nested_comments .nested_comments { margin-left: 0px; }
 }
-
