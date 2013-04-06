@@ -54,8 +54,8 @@ reply_form = (parent_id) ->
 
 
 $('.reply-button').click ->
-  $link = $(this)
-  parent_id = $link.parent().parent().data('id')
-  form = reply_form(parent_id)
-  $(".comments-container").append(form)
+  $link   = $(this)
+  $parent = $link.parent().parent()
+  form    = generate_form($parent.data('id'))
+  $parent.append(form)
   return false
