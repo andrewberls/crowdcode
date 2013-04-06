@@ -28,7 +28,7 @@
   </div>
 
   <% if signed_in? %>
-    <%= form_tag comments_review_path(@review.rid), remote: true do %>
+    <%= form_tag comments_review_path(@review.rid), remote: true, class: 'form-validate' do %>
       <%= hidden_field_tag :parent_id %>
 
       <%= label_tag :body, "New Comment" %>

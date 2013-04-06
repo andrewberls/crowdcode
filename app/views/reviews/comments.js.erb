@@ -3,7 +3,6 @@
   var $body = $("<%= j render 'reviews/comment', comment: @comment %>").hide();
   $(".comments-container").append($body);
   $body.slideDown();
-  console.log("Comment was posted");
 <% else %>
-  console.log("Comment was not posted");
+  console.log("An error occurred")
 <% end %>
