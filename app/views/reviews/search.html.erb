@@ -6,20 +6,17 @@
 <% if results.blank? %>
   <p>No results matched that search.</p>
 <% else %>
-  <p><%#= @results.inspect %></p>
-
   <div class="results">
     <!-- When results are retrieved, stored field values are available in Hit objects, and can be accessed without making a database round-trip -->
     <% @search.each_hit_with_result do |hit, review| %>
       <div class="result" style="outline: 1px solid red; margin-bottom: 25px">
-        <h3><%= review.title %></h3>
-        <div class="score" style="color:red; margin-bottom:3px;">Score: <%= hit.score %></div>
+        <h3><%= link_to review.title, review_path(review.rid) %></h3>
+        <div class="score" style="color:red; margin-bottom:3px;">Score: <%= hit.score %>, Votes: <%= review.votes %></div>
         <p><%= raw review.body %></p>
       </div>
-    <% end -%>
+    <% end %>
   </div>
 
-  <div class="pagination" style="outline: 1px solid green;">
-    <%= will_paginate(@search.hits) %>
-  </div>
+  <%= will_paginate(@search.hits) %>
+
 <% end %>
