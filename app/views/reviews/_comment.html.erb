@@ -1,5 +1,8 @@
-<div class="comment">
+<div class="comment" data-id="<%= comment.id %>">
   <div class="comment-author"><%= comment.author.username %></div>
   <div class="comment-date"><%= comment.created_at.strftime("%B %d, %Y") %></div>
   <div class="comment-body"><%= raw comment.body %></div>
+  <div class="actions">
+    <a class="reply-button" href="#">Reply</a>
+  </div>
 </div>

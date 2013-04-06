@@ -39,3 +39,19 @@ $ ->
       $('.vote-up, .vote-down').removeClass(activeClass)
       $(@).addClass(activeClass)
     return false
+
+# Generate a form from id
+generate_form = (id) ->
+  """<form action="/reviews/comments/" data-remote="true" method="post" >
+    <input id="parent_id" name="parent_id" type="hidden" value="#{id}" />
+    <textarea name="body"></textarea>
+    <input class="btn btn-blue" type="submit" value="Submit" />
+  </form>"""
+  
+
+$('.reply-button').click ->
+  $link = $(this)
+  parent_id = $link.parent().parent().data('id')
+  form = generate_form(parent_id)
+  $(".comments-container").append(form)
+  return false
