@@ -27,14 +27,19 @@
     <%= render :partial => 'reviews/comment', :collection => @review.comments %>
   </div>
 
-  <%= form_tag comments_review_path(@review.rid), remote: true do %>
-    <%= hidden_field_tag :parent_id %>
+  <% if signed_in? %>
+    <%= form_tag comments_review_path(@review.rid), remote: true do %>
+      <%= hidden_field_tag :parent_id %>
 
-    <%= label_tag :body, "New Comment" %>
-    <%= text_area_tag :body %>
+      <%= label_tag :body, "New Comment" %>
+      <%= text_area_tag :body %>
 
-    <%= submit_tag 'Submit', class: 'btn btn-blue' %>
+      <%= submit_tag 'Submit', class: 'btn btn-blue' %>
+    <% end %>
+  <% else %>
+    <p><%= link_to "Sign in", login_path(return_url: request.fullpath) %> to post comments</p>
   <% end %>
+
 <% end %>
 
 
