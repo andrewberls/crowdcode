@@ -49,20 +49,24 @@ class ReviewsController < ApplicationController
 
   # POST /reviews/:rid/comments
   def comments
-    @review  = Review.find_by_rid(params[:id])
-    @comment = @review.comments.create do |cmt|
-      cmt.parent_id = params[:parent_id]
-      cmt.body   = params[:body]
-      cmt.author = current_user
+    @review = Review.find_by_rid(params[:id])
+    body    = params[:body]
+
+    if params[:parent_id].present?
+      # Replying to a comment
+      parent_id = params[:parent_id].to_i
+      @parent   = Comment.find(parent_id)
+      raise "replying to parent id: #{parent_id}"
+    else
+      # Posting a parent comment
+      @comment = @review.comments.create do |cmt|
+        cmt.body   = body
+        cmt.author = current_user
+      end
     end
 
-    # TODO: handle @comment.save
-    # TODO: wire up ajax handler to append new comment with JS
-
     respond_to do |format|
-      format.js {
-
-      }
+      format.js
     end
   end
 

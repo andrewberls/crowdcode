@@ -45,7 +45,7 @@ $ ->
 # Generate a form to reply to a comment
 reply_form = (parent_id) ->
   """
-  <form action="/reviews/comments/" data-remote="true" method="post" class="comment-reply-form">
+  <form action="/reviews/#{rid()}/comments/" data-remote="true" method="post" class="comment-reply-form">
     <input type="hidden" name="parent_id" value="#{parent_id}" />
     <textarea name="body"></textarea>
     <input class="btn btn-blue" type="submit" value="Submit" />
@@ -56,6 +56,6 @@ reply_form = (parent_id) ->
 $('.reply-button').click ->
   $link   = $(this)
   $parent = $link.parent().parent()
-  form    = generate_form($parent.data('id'))
+  form    = reply_form($parent.data('id'))
   $parent.append(form)
   return false
