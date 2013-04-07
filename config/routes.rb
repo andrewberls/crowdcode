@@ -7,14 +7,11 @@ Crowdcode::Application.routes.draw do
     end
     match 'search', on: :collection
   end
-  match 'r/:id' => "reviews#show" # Shorthand
+  match 'r/:id' => "reviews#show", as: 'r' # Shorthand path
 
   resources :comments
 
   resources :users
-  match 'signup'  => 'users#new',     as: 'signup'
-  match 'welcome' => 'users#welcome', as: 'welcome'
-
 
   resources :sessions, only: [:new, :create, :destroy]
   match 'login'  => 'sessions#new',     as: 'login'

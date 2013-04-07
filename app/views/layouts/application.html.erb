@@ -15,8 +15,7 @@
 <body>
 
   <%
-    excluded_paths   = [signup_path] # root_path, etc
-    on_excluded_page = params[:controller] == 'sessions' || excluded_paths.any? { |p| current_page?(p) }
+    on_excluded_page = params[:controller] == 'sessions'
     main_class       = on_excluded_page ? '' : 'main'
   %>
 
