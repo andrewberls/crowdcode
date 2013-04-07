@@ -11,7 +11,7 @@
 
       <h1 class="form-title">Sign Up</h1>
 
-      <%= render 'shared/instance_errors', instance: @user %>
+      <%= render 'shared/errors', target: @user %>
 
       <%= f.label :username, "Username" %>
       <%= f.text_field :username, autofocus: true  %>

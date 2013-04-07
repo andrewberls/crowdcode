@@ -13,7 +13,7 @@ class ReviewsController < ApplicationController
     end
 
     if @review.save
-      redirect_to review_path(@review.rid)
+      redirect_to r_path(@review.rid)
     else
       flash[:error] = "Something went wrong!"
       render :new
