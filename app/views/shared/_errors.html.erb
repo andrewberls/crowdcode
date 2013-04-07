@@ -1,8 +1,8 @@
-<% if instance.present? && instance.errors.any? %>
+<% if target.present? && target.errors.any? %>
   <div class="alert alert-error">
   <h3>Something went wrong!</h3>
   <ul>
-    <% instance.errors.full_messages.each do |msg| %>
+    <% target.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
     <% end %>
   </ul>
