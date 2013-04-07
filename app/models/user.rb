@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   attr_reader :password
   validate :password_for_non_oauth
 
-  validates :username, presence: true, length: { maximum: 50 }
+  validates :username, presence: true, length: { minimum: 3, maximum: 50 }
 
   valid_email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email,
