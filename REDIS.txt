@@ -1,3 +1,0 @@
-reviews:<rid>:votes => Number of votes for a review
-
-users:<id>:votes:<rid> => string vote on this review (up|down) or nil
