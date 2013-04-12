@@ -76,10 +76,12 @@
   }
 
   .nested_comments {
-    @include border-radius;
-    border: 1px solid $med-gray;
     margin: 10px 0 0 30px;
     padding: 5px;
   }
   .nested_comments .nested_comments .nested_comments { margin-left: 0px; }
+
+  .reply-btn {
+    text-decoration: underline;
+  }
 }
