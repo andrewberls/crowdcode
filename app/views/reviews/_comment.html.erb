@@ -4,7 +4,13 @@
   <div class="comment-body"><%= raw comment.body %></div>
   <% if signed_in? %>
     <div class="actions">
-      <a class="reply-button" href="#">Reply</a>
+      <a class="reply-btn" href="#">Reply</a>
+    </div>
+  <% end %>
+
+  <% if comment.children.present? %>
+    <div class="nested_comments">
+      <%= render :partial => 'reviews/comment', :collection => comment.children %>
     </div>
   <% end %>
 </div>

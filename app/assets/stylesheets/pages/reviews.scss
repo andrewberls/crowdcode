@@ -49,12 +49,15 @@
     margin-top: 40px;
     padding-bottom: 5px;
   }
-}
-.comment {
-  border-bottom: 1px solid $med-gray;
-  margin-bottom: 10px;
-  padding: 10px 10px 20px;
 
+  & > .comment {
+    // border-bottom: 1px solid $med-gray;
+    margin-bottom: 10px;
+    padding: 10px 10px 0;
+  }
+}
+
+.comment {
   .comment-author {
     color: $blue;
     float: left;
@@ -72,6 +75,13 @@
     float: right;
   }
 
-  .nested_comments { margin-left: 30px; }
+  .nested_comments {
+    margin: 10px 0 0 30px;
+    padding: 5px;
+  }
   .nested_comments .nested_comments .nested_comments { margin-left: 0px; }
+
+  .reply-btn {
+    text-decoration: underline;
+  }
 }

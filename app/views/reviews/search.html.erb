@@ -1,17 +1,17 @@
-<% results = @search.results %>
+<% if @search.results.blank? %>
+  <p class="result-blank">No results matched that search.</p>
 
-<!-- TODO: results.count is returning a paginated count, not the total -->
-<h2><%= results.count %> results</h2>
-
-<% if results.blank? %>
-  <p>No results matched that search.</p>
+  <%= form_tag search_reviews_path, class: 'search-form' do %>
+    <%= text_field_tag 'q', params[:q], :placeholder => 'Search' %>
+    <%= submit_tag 'Search', class: 'btn btn-secondary' %>
+  <% end %>
 <% else %>
-  <div class="results">
-    <!-- When results are retrieved, stored field values are available in Hit objects, and can be accessed without making a database round-trip -->
+  <h2 class="result-count"><%= @search.total %> results</h2>
+
+  <div class="results-container">
     <% @search.each_hit_with_result do |hit, review| %>
-      <div class="result" style="outline: 1px solid red; margin-bottom: 25px">
+      <div class="result">
         <h3><%= link_to review.title, review_path(review.rid) %></h3>
-        <div class="score" style="color:red; margin-bottom:3px;">Score: <%= hit.score %>, Votes: <%= review.votes %></div>
         <p><%= teaser(review) %></p>
       </div>
     <% end %>
