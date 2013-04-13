@@ -96,7 +96,7 @@ class ReviewsController < ApplicationController
 
   def find_review
     @review = Review.find_by_rid(params[:id])
-    # return redirect_to reviews_path if @review.blank? # TODO
+    return render 'static/not_found' if @review.blank?
   end
 
 end
