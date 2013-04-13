@@ -25,6 +25,11 @@ gem 'will_paginate'
 # Threaded comments
 gem 'ancestry'
 
+# Review tags + autocompletion
+gem 'acts-as-taggable-on', '~> 2.3.1'
+#gem 'rails3-jquery-autocomplete'
+
+
 gem 'therubyracer', :platforms => :ruby
 
 # Password encryption

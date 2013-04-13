@@ -1,3 +1,7 @@
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "tag_autocomplete" %>
+<% end %>
+
 <% content_for :main do %>
 
   <%= flash_error %>
@@ -8,6 +12,21 @@
 
     <%= f.label :body %>
     <%= f.text_area :body %>
+
+    <div class="tag-editor">
+      <div style="overflow: auto">
+        <span class="tags">
+          <!-- <span class="tag">ruby</span> -->
+        </span>
+        <%= text_field_tag :tag_input, nil, placeholder: 'Enter tags', :"data-validate" => false %>
+      </div>
+
+      <ul class="suggestions-list">
+        <!-- <li>rails</li> -->
+      </ul>
+    </div>
+
+    <%= hidden_field_tag :tag_list %>
 
     <%= f.submit 'Submit', class: 'btn btn-blue btn-medium' %>
   <% end %>

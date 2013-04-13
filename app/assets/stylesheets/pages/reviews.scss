@@ -1,3 +1,58 @@
+.tag-editor {
+  @include border-radius;
+  border: 1px solid $med-gray;
+  margin-bottom: 15px;
+  padding: 0 5px;
+  position: relative;
+
+  .tag {
+    @include bold(0.9em);
+    background-color: #F3F3F3;
+    border: 1px solid #DCDCDC;
+    color: $gray-text;
+    display: inline-block;
+    margin: 6px 4px 0 0;
+    padding: 5px 10px;
+  }
+
+  #tag_input {
+    border: none;
+    float: right;
+    margin: 0;
+    padding-left: 0;
+    padding-right: 0;
+    position: relative;
+  }
+
+  ul {
+    @include border-radius;
+    border: 1px solid darken($med-gray, 15);
+    display: none;
+    position: absolute;
+    top: 38px; // TODO: don't like this
+    left: 0;
+    width: 100%;
+    z-index: 100;
+  }
+
+  li {
+    background-color: white;
+    border-bottom: 1px solid $med-gray;
+    color: $blue;
+    font-weight: bold;
+    padding: 7px;
+
+    &.selected,
+    &:hover {
+      background-color: $blue;
+      color: white;
+      cursor: pointer;
+    }
+
+    &:last-child { border-bottom: none; }
+  }
+}
+
 .review {
   position: relative;
 
