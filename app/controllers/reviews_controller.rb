@@ -54,8 +54,12 @@ class ReviewsController < ApplicationController
     if params[:parent_id].present?
       # Replying to a comment
       parent_id = params[:parent_id].to_i
-      @parent   = Comment.find(parent_id)
-      raise "replying to parent id: #{parent_id}"
+      #@parent   = Comment.find(parent_id)
+      @comment = @review.comments.create do |cmt|
+        cmt.body = body
+        cmt.parent_id = parent_id
+        cmt.author = current_user
+      end
     else
       # Posting a parent comment
       @comment = @review.comments.create do |cmt|

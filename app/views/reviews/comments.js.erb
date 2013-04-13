@@ -1,8 +1,19 @@
 <% if @comment.valid? %>
-  $("#body").val('');
-  var $body = $("<%= j render 'reviews/comment', comment: @comment %>").hide();
-  $(".comments-container").append($body);
-  $body.slideDown();
+  <% if @comment.parent_id.present? %>
+    $("#body").val('');
+    var $body = $("<%= j render 'reviews/comment', comment: @comment %>").hide();
+    //var parent_id = $(".comment").attr("id");
+    //$(".comment > #<%= @comment.parent %>").append($body);
+    var $parent = $("*[data-id='" + <%= @comment.parent_id %> + "']")
+    $parent.$(".nested_comments").append($body);
+    $body.slideDown();
+
+  <% else %>
+    $("#body").val('');
+    var $body = $("<%= j render 'reviews/comment', comment: @comment %>").hide();
+    $(".comments-container").append($body);
+    $body.slideDown();
+  <% end %>
 <% else %>
   console.log("An error occurred")
 <% end %>
