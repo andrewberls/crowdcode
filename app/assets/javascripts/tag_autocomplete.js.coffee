@@ -139,3 +139,10 @@ $ ->
     addTag $(@).text()
 
   $form.submit(normalizeTagList)
+
+  # Hack to get hovers to work (CSS hovers weren't playing nice with arrow keys)
+  $(document.body).delegate '.suggestion', 'mouseenter', ->
+    $('.suggestion').removeClass('selected')
+    $(@).addClass('selected')
+
+  $(document.body).delegate '.suggestion', 'mouseleave', -> $(@).removeClass('selected')

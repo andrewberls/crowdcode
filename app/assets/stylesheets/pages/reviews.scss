@@ -42,8 +42,7 @@
     font-weight: bold;
     padding: 7px;
 
-    &.selected,
-    &:hover {
+    &.selected {
       background-color: $blue;
       color: white;
       cursor: pointer;
