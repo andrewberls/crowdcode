@@ -56,9 +56,9 @@ class ReviewsController < ApplicationController
       parent_id = params[:parent_id].to_i
       #@parent   = Comment.find(parent_id)
       @comment = @review.comments.create do |cmt|
+        cmt.author = current_user
         cmt.body = body
         cmt.parent_id = parent_id
-        cmt.author = current_user
       end
     else
       # Posting a parent comment
