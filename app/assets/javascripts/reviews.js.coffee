@@ -1,19 +1,22 @@
-# Get the rid of the current review
-rid = -> $('.review').data('rid')
-
-# POST a vote (direction and amount)
-vote = (dir) ->
-  $.post "/reviews/#{rid()}/votes", { dir: dir }
-
-# Change the display of the vote counter (direction and amount)
-changeCounter = (dir, amt=1) ->
-  $votes = $('.votes-container').find('.votes')
-  count  = parseInt($votes.html())
-  newAmt = if dir == 'up' then count+amt else count-amt
-  $votes.html(newAmt)
-
-
 $ ->
+  # ----------------------
+  #  Votes
+  # ----------------------
+
+  # Get the rid of the current review
+  rid = -> $('.review').data('rid')
+
+  # POST a vote (direction and amount)
+  vote = (dir) ->
+    $.post "/reviews/#{rid()}/votes", { dir: dir }
+
+  # Change the display of the vote counter (direction and amount)
+  changeCounter = (dir, amt=1) ->
+    $votes = $('.votes-container').find('.votes')
+    count  = parseInt($votes.html())
+    newAmt = if dir == 'up' then count+amt else count-amt
+    $votes.html(newAmt)
+
   activeClass = 'vote-active'
 
   $('.vote-up, .vote-down').click ->
@@ -42,19 +45,31 @@ $ ->
 
 
 
-# Generate a form to reply to a comment
-reply_form = (parent_id) ->
-  """
-  <form action="/reviews/#{rid()}/comments/" data-remote="true" method="post" class="comment-reply-form">
-    <input type="hidden" name="parent_id" value="#{parent_id}" />
-    <textarea name="body"></textarea>
-    <input class="btn btn-blue" type="submit" value="Submit" />
-  </form>
-  """
+  # ----------------------
+  #  Comments
+  # ----------------------
 
+  # Generate a form to reply to a comment
+  reply_form = (parent_id) ->
+    """
+    <form action="/reviews/#{rid()}/comments/" data-remote="true" method="post" class="comment-reply-form">
+      <input type="hidden" name="parent_id" value="#{parent_id}" />
+      <textarea name="body"></textarea>
+      <input class="btn btn-blue" type="submit" value="Submit" />
+    </form>
+    """
 
-$(document.body).delegate '.reply-button', 'click', ->
-  $parent = $(@).parent().parent()
-  form    = reply_form($parent.data('id'))
-  $parent.append(form)
-  return false
+  # CLicking reply button toggles reply form
+  # If will be removed if already present,
+  # else it will be generated and appended to the parent comment
+  $(document.body).delegate '.reply-button', 'click', ->
+    $parent = $(@).parent().parent()
+    $childForm = $parent.find('.comment-reply-form')
+    if $childForm.length
+      $childForm.remove()
+    else
+      $parent.append reply_form($parent.data('id'))
+    return false
+
+  # Destroy child reply forms when focusing on main reply form
+  $("#body").focus -> $('.comment-reply-form').remove()

@@ -1,24 +1,29 @@
-$("#body").val('');
-var $body   = $("<%= j render 'reviews/comment', comment: @comment %>").hide();
+var $mainForm  = $("#body"),
+    $childForm = $('.comment-reply-form');
+
+$mainForm.val('');
 
 <% if @comment.valid? %>
+  var $body = $("<%= j render 'reviews/comment', comment: @comment %>").hide();
+
   <% if @comment.parent_id.present? %>
+    // Replying to a comment - find and append
     var $parent = $("*[data-id='" + <%= @comment.parent_id %> + "']")
 
     if ($parent.find('.nested_comments').length) {
-      $parent.find(".nested_comments").append($body);
-      $(".comment-reply-form").remove();
-      console.log("parent already had replies")
-      console.log("parent already had replies");
+      // Parent already had replies
+      $parent.find(".nested_comments").first().append($body);
     } else {
-      $nested_comments = $("<div class='nested_comments'>");
+      // Parent had no replies - append new child container
+      var $nested_comments = $("<div class='nested_comments'>");
       $nested_comments.append($body);
       $parent.append($nested_comments);
-      $(".comment-reply-form").remove();
     }
 
+    $(".comment-reply-form").remove();
     $body.slideDown();
   <% else %>
+    // No parent - append to review comments
     $(".comments-container").append($body);
   <% end %>
 
@@ -26,6 +31,13 @@ var $body   = $("<%= j render 'reviews/comment', comment: @comment %>").hide();
 
 <% else %>
 
-  console.log("An error occurred")
+  // Comment invalid - add error class to appropriate input
+  <% if @comment.parent_id.present? %>
+    var $form = $childForm;
+  <% else %>
+    var $form = $mainForm;
+  <% end %>
+
+  $form.find('textarea').addClass('field-error');
 
 <% end %>
