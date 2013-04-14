@@ -6,6 +6,7 @@ keyDown   = 40
 keyEnter  = 13
 keyBack   = 8
 keyComma  = 188
+selectedClass = 'selected'
 
 # Bind keyup handlers when editor has focus
 #   up/down - scroll through list of suggestions
@@ -48,7 +49,6 @@ unbindSuggestionSelect = ->
 # Move the currently selected suggestion up or down
 scrollSelection = (dir) ->
   $suggs = $('.suggestion')
-  selectedClass = 'selected'
   endpoint = -> if dir == 'up' then $suggs.last() else $suggs.first()
 
   if $suggs.hasClass(selectedClass)
@@ -142,7 +142,7 @@ $ ->
 
   # Hack to get hovers to work (CSS hovers weren't playing nice with arrow keys)
   $(document.body).delegate '.suggestion', 'mouseenter', ->
-    $('.suggestion').removeClass('selected')
-    $(@).addClass('selected')
+    $('.suggestion').removeClass(selectedClass)
+    $(@).addClass(selectedClass)
 
   $(document.body).delegate '.suggestion', 'mouseleave', -> $(@).removeClass('selected')
