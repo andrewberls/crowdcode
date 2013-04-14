@@ -62,7 +62,7 @@ $ ->
   # CLicking reply button toggles reply form
   # If will be removed if already present,
   # else it will be generated and appended to the parent comment
-  $(document.body).delegate '.reply-button', 'click', ->
+  $(document.body).delegate '.reply-btn', 'click', ->
     $parent = $(@).parent().parent()
     $childForm = $parent.find('.comment-reply-form')
     if $childForm.length
