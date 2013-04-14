@@ -5,6 +5,8 @@
     //var parent_id = $(".comment").attr("id");
     var $parent = $("*[data-id='" + <%= @comment.parent_id %> + "']")
     if ($parent.find('.nested_comments').length) {
+      $parent.find(".nested_comments").append($body);
+      $(".comment-reply-form").remove();
       console.log("parent already had replies")
     } else {
       $nested_comments = $("<div class='nested_comments'>");
@@ -12,8 +14,8 @@
       $(".comment-reply-form").remove();
       console.log("parent had no replies, need to create .nested_comments section")
     }
-    
-  $body.slideDown();
+
+    $body.slideDown();
   <% else %>
     $("#body").val('');
     var $body = $("<%= j render 'reviews/comment', comment: @comment %>").hide();
