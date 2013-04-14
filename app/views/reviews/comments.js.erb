@@ -1,25 +1,26 @@
+$("#body").val('');
+var $body   = $("<%= j render 'reviews/comment', comment: @comment %>").hide();
+
 <% if @comment.valid? %>
   <% if @comment.parent_id.present? %>
-    $("#body").val('');
-    var $body = $("<%= j render 'reviews/comment', comment: @comment %>").hide();
-    //var parent_id = $(".comment").attr("id");
     var $parent = $("*[data-id='" + <%= @comment.parent_id %> + "']")
+
     if ($parent.find('.nested_comments').length) {
-      console.log("parent already had replies")
+      console.log("parent already had replies");
     } else {
       $nested_comments = $("<div class='nested_comments'>");
-      $parent.append($nested_comments.append($body));
+      $nested_comments.append($body);
+      $parent.append($nested_comments);
       $(".comment-reply-form").remove();
-      console.log("parent had no replies, need to create .nested_comments section")
     }
-    
-  $body.slideDown();
   <% else %>
-    $("#body").val('');
-    var $body = $("<%= j render 'reviews/comment', comment: @comment %>").hide();
     $(".comments-container").append($body);
-    $body.slideDown();
   <% end %>
+
+  $body.slideDown();
+
 <% else %>
+
   console.log("An error occurred")
+
 <% end %>
