@@ -3,11 +3,17 @@
     $("#body").val('');
     var $body = $("<%= j render 'reviews/comment', comment: @comment %>").hide();
     //var parent_id = $(".comment").attr("id");
-    //$(".comment > #<%= @comment.parent %>").append($body);
     var $parent = $("*[data-id='" + <%= @comment.parent_id %> + "']")
-    $parent.$(".nested_comments").append($body);
-    $body.slideDown();
-
+    if ($parent.find('.nested_comments').length) {
+      console.log("parent already had replies")
+    } else {
+      $nested_comments = $("<div class='nested_comments'>");
+      $parent.append($nested_comments.append($body));
+      $(".comment-reply-form").remove();
+      console.log("parent had no replies, need to create .nested_comments section")
+    }
+    
+  $body.slideDown();
   <% else %>
     $("#body").val('');
     var $body = $("<%= j render 'reviews/comment', comment: @comment %>").hide();
