@@ -9,7 +9,8 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(params[:review]) do |r|
-      r.author = current_user
+      r.author   = current_user
+      r.tag_list = params[:tag_list]
     end
 
     if @review.save
@@ -78,6 +79,16 @@ class ReviewsController < ApplicationController
         fulltext(params[:q])
         paginate(page: params[:page])
       end
+    end
+  end
+
+  def tags
+    @tags = ActsAsTaggableOn::Tag.where("tags.name LIKE ?", "#{params[:query]}%").limit(7)
+
+    respond_to do |format|
+      format.json {
+        render json: @tags.map(&:name)
+      }
     end
   end
 

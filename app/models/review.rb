@@ -13,6 +13,9 @@ class Review < ActiveRecord::Base
 
   before_create :generate_rid
 
+  acts_as_taggable
+
+  # TODO: tag search
   searchable do
     text :title, :body
     text :author do
