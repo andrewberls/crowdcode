@@ -132,6 +132,11 @@
   .nested_comments {
     margin: 10px 0 0 30px;
     padding: 5px;
+
+    .comment {
+      margin-top: 10px;
+      &:first-child { margin: 0; }
+    }
   }
   .nested_comments .nested_comments .nested_comments { margin-left: 0px; }
 
