@@ -96,14 +96,13 @@ populateSuggestions = (listData) ->
 
 # Grow or shrink input field to fit next to tags
 resizeInput = ->
-  # Array of widths of all tag elements
-  tagWidths = $('.tag').map( (i, el) -> $(el).outerWidth() ).get()
-
-  # Total width of all tag elements
-  totalWidth = if tagWidths.length then tagWidths.reduce((total, elem) -> total + elem) else 0
+  numTags = totalWidth = 0
+  for el in $('.tag')
+    numTags++
+    totalWidth += $(el).outerWidth()
 
   tagMargin = 8
-  newWidth  = $('.tag-editor').width() - totalWidth - (tagMargin * tagWidths.length)
+  newWidth  = $('.tag-editor').width() - totalWidth - (tagMargin * numTags)
   $tagInput.css('width', newWidth)
 
 
