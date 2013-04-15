@@ -24,8 +24,7 @@
 
   <div class="comments-container">
     <h2>Comments</h2>
-    <% comments = @review.comments.select { |c| c.parent_id.nil? } %>
-    <%= render :partial => 'reviews/comment', :collection => comments %>
+    <%= render :partial => 'reviews/comment', :collection => @review.parent_comments %>
   </div>
 
   <% if signed_in? %>

@@ -45,6 +45,12 @@ class Review < ActiveRecord::Base
     $redis.decrby(votes_key, amt)
   end
 
+  # Top-level comments on this review
+  # i.e., comments with no parent
+  def parent_comments
+    comments.where(ancestry: nil)
+  end
+
   private
 
   def generate_rid
