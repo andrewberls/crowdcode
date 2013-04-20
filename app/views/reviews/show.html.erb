@@ -37,7 +37,7 @@
       <%= submit_tag 'Submit', class: 'btn btn-blue' %>
     <% end %>
   <% else %>
-    <p><%= link_to "Sign in", login_path(return_url: request.fullpath) %> to post comments</p>
+    <p style="margin-top: 25px; font-size: 1.1em"><%= link_to "Sign in", login_path(return_url: request.fullpath) %> to post comments.</p>
   <% end %>
 
 <% end %>
