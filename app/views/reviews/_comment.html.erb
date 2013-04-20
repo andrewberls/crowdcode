@@ -1,6 +1,8 @@
 <div class="comment" data-id="<%= comment.id %>">
   <div class="comment-author"><%= comment.author.username %></div>
-  <div class="comment-date"><%= comment.created_at.strftime("%B %d, %Y") %></div>
+
+  <div class="comment-date"><%= render_time_distance(comment.created_at) %></div>
+
   <div class="comment-body"><%= raw comment.body %></div>
   <% if signed_in? %>
     <div class="actions">

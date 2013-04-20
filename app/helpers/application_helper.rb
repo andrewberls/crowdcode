@@ -14,4 +14,14 @@ module ApplicationHelper
   #   time.strftime("%-d %b %Y")
   # end
 
+  # Ex: Apr 20
+  def render_time(time)
+    time.strftime("%b %d")
+  end
+
+  # Ex: '4 minutes ago'
+  def render_time_distance(time)
+    distance_of_time_in_words_to_now(time) + ' ago'
+  end
+
 end
