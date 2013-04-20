@@ -16,7 +16,32 @@
 .results-container {}
 
 .result {
+  @include clearfix;
+  border: 1px solid $med-gray;
   margin-bottom: 25px;
+
+  .result-votes,
+  .result-info {
+    float: left;
+  }
+
+  .result-votes {
+    @include bold(1.3em);
+    background-color: darken($light-gray, 2);
+    border-right: 1px solid $med-gray;
+    color: lighten($gray-text, 10);
+    height: 20px;
+    margin-right: 10px;
+    padding: 16px 15px 15px;
+  }
+
+  .result-info { padding: 5px 0; }
+
+  .result-date {
+    color: lighten($gray-text, 30);
+    float: right;
+    margin: 7px 7px 0 0;
+  }
 }
 
 

@@ -11,8 +11,16 @@
   <div class="results-container">
     <% @search.each_hit_with_result do |hit, review| %>
       <div class="result">
-        <h3><%= link_to review.title, review_path(review.rid) %></h3>
-        <p><%= teaser(review) %></p>
+        <div class="result-votes"><%= review.votes %></div>
+
+        <div class="result-info">
+          <h3><%= link_to review.title, review_path(review.rid) %></h3>
+          <p><%= teaser(review) %></p>
+        </div>
+
+        <div class="result-date">
+          <%= render_time review.created_at %>
+        </div>
       </div>
     <% end %>
   </div>
