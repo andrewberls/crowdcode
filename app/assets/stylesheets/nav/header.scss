@@ -13,6 +13,7 @@
   .segment-5 { background-color: $aqua; }
 }
 
+
 header {
   background-color: white;
   border-bottom: 1px solid $med-gray;
@@ -54,5 +55,45 @@ header {
     color: #999;
     float: right;
     margin: 8px 0 0 40px;
+
+    span { margin-top: 4px; } // Hack to align text
+
+    .settings-toggle {
+      padding: 2px;
+      padding-right: 15px;
+
+      .arrow-down {
+        position: absolute;
+        top: 6px; right: 2px;
+      }
+    }
+
+  }
+}
+
+
+.dropdown-container {
+  display: none;
+  position: absolute;
+  top: 30px; right: 0;
+
+  ul {
+    @extend %whitelist-container;
+    border: 1px solid darken($med-gray, 10);
+    width: 220px;
+    z-index: 100;
+  }
+
+  li a {
+    @extend %whitelist-item;
+
+    &:hover {
+      background-color: $blue;
+      color: white;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    &:last-child { border-bottom: 1px solid $med-gray; }
   }
 }

@@ -25,8 +25,7 @@
   }
 
   ul {
-    @include border-radius;
-    border: 1px solid darken($med-gray, 15);
+    @extend %whitelist-container;
     display: none;
     position: absolute;
     top: 38px; // TODO: don't like this
@@ -36,11 +35,8 @@
   }
 
   li {
-    background-color: white;
-    border-bottom: 1px solid $med-gray;
-    color: $blue;
-    font-weight: bold;
-    padding: 7px;
+    @extend %whitelist-item;
+    padding: 7px !important; // :(
 
     &.selected {
       background-color: $blue;

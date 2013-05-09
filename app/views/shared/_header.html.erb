@@ -16,7 +16,22 @@
 
           <div class="header-links">
             <% if signed_in? %>
-              Hello, <%= link_to current_user.username, "#" %>
+              <span class="left">Hello <span style="color: #3a84c5"><%= current_user.username %></span></span>
+
+              <div style="position: relative; margin-left: 10px;" class="right">
+                <a href="#" class="btn btn-secondary dropdown-toggle settings-toggle">
+                  <%= image_tag "gear.png" %>
+                  <span class="arrow arrow-down"></span>
+                </a>
+
+                <div class="dropdown-container">
+                  <ul>
+                    <li><%= link_to "Edit Profile", edit_user_path(current_user) %></li>
+                    <li><%= link_to "Log Out", logout_path %></li>
+                  </ul>
+                </div>
+              </div>
+
             <% else %>
               <%= link_to "Sign In", login_path %>
             <% end %>
