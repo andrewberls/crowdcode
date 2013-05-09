@@ -138,9 +138,13 @@
       &:first-child { margin: 0; }
     }
   }
+
   .nested_comments .nested_comments .nested_comments { margin-left: 0px; }
 
-  .reply-btn {
-    text-decoration: underline;
+  .reply-btn { text-decoration: underline; }
+
+  .comment-reply-form textarea {
+    height: 6em;
+    margin-top: 10px;
   }
 }
