@@ -1,7 +1,7 @@
 class ReviewsController < ApplicationController
 
   before_filter :must_be_signed_in, except: [:index, :show, :search]
-  before_filter :find_review, only: [:show]
+  before_filter :find_review, only: [:show, :comments]
 
   def new
     @review = Review.new
@@ -49,24 +49,10 @@ class ReviewsController < ApplicationController
 
   # POST /reviews/:rid/comments
   def comments
-    @review = Review.find_by_rid(params[:id])
-    body    = params[:body]
-
-    if params[:parent_id].present?
-      # Replying to a comment
-      parent_id = params[:parent_id].to_i
-      #@parent   = Comment.find(parent_id)
-      @comment = @review.comments.create do |cmt|
-        cmt.author = current_user
-        cmt.body = body
-        cmt.parent_id = parent_id
-      end
-    else
-      # Posting a parent comment
-      @comment = @review.comments.create do |cmt|
-        cmt.body   = body
-        cmt.author = current_user
-      end
+    @comment = @review.comments.create do |cmt|
+      cmt.author = current_user
+      cmt.body   = params[:body]
+      cmt.parent_id = params[:parent_id].to_i if params[:parent_id].present?
     end
 
     respond_to do |format|
