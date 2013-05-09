@@ -41,3 +41,4 @@ tmp/
 .sass-cache/
 
 solr/data/
+solr/pids
