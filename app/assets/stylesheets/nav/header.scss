@@ -93,7 +93,7 @@ header {
       cursor: pointer;
       text-decoration: none;
     }
-
-    &:last-child { border-bottom: 1px solid $med-gray; }
   }
+
+  li:last-child a { border-bottom: none; }
 }
