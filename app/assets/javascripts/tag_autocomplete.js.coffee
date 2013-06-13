@@ -8,6 +8,7 @@ keyBack   = 8
 keyComma  = 188
 selectedClass = 'selected'
 
+
 # Bind keyup handlers when editor has focus
 #   up/down - scroll through list of suggestions
 #   enter - choose selected tag
@@ -15,11 +16,6 @@ selectedClass = 'selected'
 #   letter - wait a bit and query the server for suggestions
 bindSuggestionSelect = ->
   timeout = -1
-
-  # Don't overload server - wait a bit after keydown to fetch list
-  setFetchTimeout = ->
-    clearTimeout(timeout) if timeout
-    timeout = setTimeout(fetchSuggestions, 400)
 
   # Prevent enter key from prematurely submitting form
   $form.on 'keydown', (e) -> return false if e.which == keyEnter
@@ -44,6 +40,12 @@ bindSuggestionSelect = ->
 unbindSuggestionSelect = ->
   $form.off('keydown')
   $tagInput.off('keyup')
+
+
+# Don't overload server - wait a bit after keydown to fetch list
+setFetchTimeout = ->
+  clearTimeout(timeout) if timeout
+  timeout = setTimeout(fetchSuggestions, 400)
 
 
 # Move the currently selected suggestion up or down
@@ -87,10 +89,10 @@ populateSuggestions = (listData) ->
     $suggList.empty()
     existing = $('.tag').map (i, el) -> $(el).text()
 
+    # Don't suggest tags we've already selected
     for name in list
-      # Don't suggest tags we've already selected
       if $.inArray(name, existing) == -1
-        $suggList.append $("<li class='suggestion'>#{name}</li>")
+        $suggList.append li('.suggestion', name)
     $suggList.show()
 
 
@@ -109,7 +111,7 @@ resizeInput = ->
 # Insert a new tag into the editor
 addTag = (name) ->
   if name != ''
-    $('.tags').append $("<span class='tag'>#{name}</span>")
+      $('.tags').append span('.tag', name)
     $tagInput.val('')
     hideSuggestions()
     resizeInput()
@@ -144,4 +146,5 @@ $ ->
     $('.suggestion').removeClass(selectedClass)
     $(@).addClass(selectedClass)
 
-  $(document.body).delegate '.suggestion', 'mouseleave', -> $(@).removeClass('selected')
+  $(document.body).delegate '.suggestion', 'mouseleave', ->
+    $(@).removeClass('selected')

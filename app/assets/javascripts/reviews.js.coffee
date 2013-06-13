@@ -2,13 +2,16 @@ $ ->
   # ----------------------
   #  Votes
   # ----------------------
+  activeClass = 'vote-active'
 
   # Get the rid of the current review
   rid = -> $('.review').data('rid')
 
+
   # POST a vote (direction and amount)
   vote = (dir) ->
     $.post "/reviews/#{rid()}/votes", { dir: dir }
+
 
   # Change the display of the vote counter (direction and amount)
   changeCounter = (dir, amt=1) ->
@@ -17,10 +20,9 @@ $ ->
     newAmt = if dir == 'up' then count+amt else count-amt
     $votes.html(newAmt)
 
-  activeClass = 'vote-active'
 
   $('.vote-up, .vote-down').click ->
-    dir = $(@).attr('id')
+    dir      = $(@).attr('id')
     $other   = if dir == 'up' then $('.vote-down') else $('.vote-up')
     opposite = $other.attr('id')
 
@@ -48,7 +50,6 @@ $ ->
   # ----------------------
   #  Comments
   # ----------------------
-
   # Generate a form to reply to a comment
   reply_form = (parent_id) ->
     """
@@ -59,14 +60,15 @@ $ ->
     </form>
     """
 
+
   # CLicking reply button toggles reply form
   # If will be removed if already present,
   # else it will be generated and appended to the parent comment
   $(document.body).delegate '.reply-btn', 'click', ->
     $parent = $(@).parent().parent()
-    $childForm = $parent.find('.comment-reply-form')
-    if $childForm.length
-      $childForm.remove()
+    $child  = $parent.find('.comment-reply-form')
+    if $child.length
+      $child.remove()
     else
       $parent.append reply_form($parent.data('id'))
     return false
