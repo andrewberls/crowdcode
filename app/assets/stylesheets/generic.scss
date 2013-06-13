@@ -76,6 +76,16 @@ nav {
 }
 
 
+%whitebox {
+  @include border-box;
+  @include border-radius(2px);
+  @include clearfix;
+  background-color: white;
+  border: 1px solid $med-gray;
+  padding: 20px;
+}
+
+
 %whitelist-container {
   @include border-radius;
   border: 1px solid darken($med-gray, 10);
@@ -87,5 +97,6 @@ nav {
   color: $blue;
   display: block;
   font-weight: bold;
+  text-align: center;
   padding: 7px 65px;
 }

@@ -44,16 +44,6 @@
   }
 }
 
-
-%whitebox {
-  @include border-box;
-  @include border-radius(2px);
-  @include clearfix;
-  background-color: white;
-  border: 1px solid $med-gray;
-  padding: 20px;
-}
-
 @mixin bold($font_size: 1em) {
   font-size: $font_size;
   font-weight: bold;
