@@ -11,7 +11,7 @@ Crowdcode::Application.routes.draw do
       get 'tags'
     end
   end
-  match 'r/:id' => "reviews#show", as: 'r' # Shorthand path
+  resources :r, controller: "reviews" # Alias review paths as 'r'
 
   resources :comments
 
@@ -20,8 +20,8 @@ Crowdcode::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   match 'login'  => 'sessions#new',     as: 'login'
   match 'logout' => 'sessions#destroy', as: 'logout'
-  match "auth/:provider/callback" => "sessions#create_from_github"
-  match "auth/failure"            => "sessions#failure_from_github"
+  match 'auth/:provider/callback' => 'sessions#create_from_github'
+  match 'auth/failure'            => 'sessions#failure_from_github'
 
   root to: 'static#start'
 
