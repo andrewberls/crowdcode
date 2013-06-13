@@ -14,6 +14,12 @@ clearPopups = (e) ->
     $("[data-popup=true]:visible").hide()
 
 
+# Unescape a string HTML entities
+# Ex:
+#
+#   htmlDecode("&lt;?php hello() &gt;")
+#   => "<?php hello() >"
+#
 window.htmlDecode = (value) -> $.trim $('<div>').html(value).text()
 
 

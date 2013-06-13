@@ -14,6 +14,7 @@ selectedClass = 'selected'
 #   up/down - scroll through list of suggestions
 #   enter - choose selected tag
 #   backspace - erase most recent tag if present
+#   comma - insert a tag for the last word
 #   letter - wait a bit and query the server for suggestions
 bindSuggestionSelect = ->
   timeout = -1
@@ -115,7 +116,7 @@ resizeInput = ->
 # Insert a new tag into the editor
 addTag = (name) ->
   if name != ''
-      $('.tags').append span('.tag', name)
+    $('.tags').append span('.tag', name)
     $tagInput.val('')
     hideSuggestions()
     resizeInput()
@@ -138,7 +139,7 @@ normalizeTagList = ->
 
 $ ->
   $tagInput.on 'focus', bindSuggestionSelect
-  $tagInput.on 'blur', unbindSuggestionSelect
+  $tagInput.on 'blur',  unbindSuggestionSelect
 
   $(document.body).delegate '.suggestion', 'click', ->
     addTag $(@).text()
