@@ -1,8 +1,15 @@
-# Outline search form on focus
+# Outline search form and expand back and forth on focus
+
 $search = $('.search-container')
-$form   = $search.find('input')
+$form   = $search.find('#q')
+time    = 250
 
-setColor = (color) -> $search.css('border-color', color)
+$form.on 'focus', ->
+  $search.css('border-color', '#84B9E8')
+  $search.animate width:'30em', time, ->
+    $form.css('width', '24em')
 
-$form.on 'focus', -> setColor('#84B9E8')
-$form.on 'blur',  -> setColor('#ddd')
+$form.on 'blur',  ->
+  $search.css('border-color', '#ddd')
+  $form.css('width', '19em')
+  $search.animate width:'25em', time
