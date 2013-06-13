@@ -11,7 +11,7 @@ keyEsc = 27
 # Clear any sort of popup on escape keypress
 clearPopups = (e) ->
   if (e.which || e.keyCode) == keyEsc
-    $("[data-popup=true]:visible").each (i, el) -> $(el).hide()
+    $("[data-popup=true]:visible").hide()
 
 
 window.htmlDecode = (value) -> $.trim $('<div>').html(value).text()
