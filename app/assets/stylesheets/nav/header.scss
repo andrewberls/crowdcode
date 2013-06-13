@@ -83,12 +83,13 @@ header {
   ul {
     @extend %whitelist-container;
     border: 1px solid darken($med-gray, 10);
-    width: 220px;
+    width: 175px;
     z-index: 100;
   }
 
   li a {
     @extend %whitelist-item;
+    padding: 7px 0px !important;
 
     &:hover {
       background-color: $blue;

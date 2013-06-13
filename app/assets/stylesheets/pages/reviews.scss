@@ -36,7 +36,8 @@
 
   li {
     @extend %whitelist-item;
-    padding: 7px !important; // :(
+    text-align: left !important;
+    padding: 7px !important;
 
     &.selected {
       background-color: $blue;
@@ -73,7 +74,7 @@
   $active-color: red;
   .vote-up,
   .vote-down {
-    border-left: $arrow-size solid transparent;
+    border-left:  $arrow-size solid transparent;
     border-right: $arrow-size solid transparent;
     display: block;
     height: 0;
