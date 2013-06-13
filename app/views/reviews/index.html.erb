@@ -5,7 +5,7 @@
   </div>
 
   <div>
-    <% Review.all.each do |r| %>
+    <% @reviews.each do |r| %>
       <div style="outline: 1px solid red; margin-bottom: 15px; padding: 3px;">
         <%= link_to r.title, r_path(r.rid) %>
         <span style="float: right; color: #777"><%= r.comments.count %> comments</span>

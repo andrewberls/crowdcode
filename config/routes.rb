@@ -23,7 +23,8 @@ Crowdcode::Application.routes.draw do
   match 'auth/:provider/callback' => 'sessions#create_from_github'
   match 'auth/failure'            => 'sessions#failure_from_github'
 
-  root to: 'static#start'
+  # root to: 'static#start'
+  root to: 'reviews#index'
 
   match '*a' => 'static#not_found'
 

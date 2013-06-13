@@ -1,11 +1,14 @@
 <% provide(:title, @review.title) %>
 
 <% content_for :javascript_includes do %>
-  <%= javascript_include_tag :reviews %>
+  <%= javascript_include_tag 'reviews/reviews' %>
+  <%= javascript_include_tag 'reviews/votes' %>
+  <%= javascript_include_tag 'reviews/comments' %>
+  <%= javascript_include_tag 'marked' %>
 <% end %>
 
 <% content_for :main do %>
-  <div class="review" data-rid="<%= @review.rid %>">
+  <div class="review" data-rid="<%= @review.rid %>" data-lang="">
     <% if signed_in? %>
       <div class="votes-container">
         <a href="#" id="up" class="vote-up <%= 'vote-active' if @vote == 'up' %>"></a>
@@ -15,7 +18,10 @@
     <% end %>
 
     <h2><%= @review.title %></h2>
-    <%= raw @review.body %>
+
+    <div class="review-body">
+      <%= raw @review.body %>
+    </div>
 
     <div class="review-author">
       By: <%= @review.author.username %>

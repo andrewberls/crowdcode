@@ -22,6 +22,8 @@ class ReviewsController < ApplicationController
   end
 
   def index
+    # TODO: customize review list if signed in
+    @reviews = Review.all
   end
 
   def show

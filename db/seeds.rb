@@ -4,17 +4,18 @@ david  = User.create!(username: "David Dawg",  email: "david@gmail.com",  passwo
 nicole = User.create!(username: "Nicole Doe",  email: "nicole@gmail.com", password: "password")
 
 rev1 = Review.create!(author: admin, title: 'Need some help on a Ruby function', body: %Q{
-  <p>I need some help refining this ruby function for project I'm working on - it seems kind of ugly. Can anyone help me out?</p>
+  I need some help refining this ruby function for project I'm working on - it seems kind of ugly. Can anyone help me out?
 
-  <pre>
-  <code>def some_method(opts)
+  ```
+  def some_method(opts)
     opts = opts || {}
     test = Array.new()
     test << opts[:somekey]
     return test
-  end</code></pre>
+  end
+  ```
 
-  <p>Anyone have any input?</p>
+  Anyone have any input?
 })
 rev1.tag_list = "ruby,rumble"; rev1.save!
 
@@ -36,15 +37,16 @@ rev1.comments.create!(author: nicole, body: %Q{
 
 
 rev2 = Review.create!(author: nicole, title: 'This is a post about PHP', body: %Q{
-  <p>Herp derp, I like php.</p>
+  Herp derp, I like php.
 
-  <pre>
-  <code>&lt;?php
+  ```
+  &lt;?php
     $php_sucks = 'true';
     echo "Does php suck?: " . $php_sucks;
-  ?&gt;</code></pre>
+  ?&gt;
+  ```
 
-  <p>Please advise me on my incorrect choice of language.</p>
+  Please advise me on my incorrect choice of language.
 })
 rev1.tag_list = "php,running"; rev1.save!
 

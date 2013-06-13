@@ -14,5 +14,8 @@ clearPopups = (e) ->
     $("[data-popup=true]:visible").each (i, el) -> $(el).hide()
 
 
+window.htmlDecode = (value) -> $.trim $('<div>').html(value).text()
+
+
 $ ->
   document.addEventListener('keydown', clearPopups, false)
