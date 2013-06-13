@@ -15,7 +15,7 @@ $mainForm.val('');
       $parent.find(".nested_comments").first().append($body);
     } else {
       // Parent had no replies - append new child container
-      var $nested_comments = $("<div class='nested_comments'>");
+      var $nested_comments = $(div('.nested_comments',''));
       $nested_comments.append($body);
       $parent.append($nested_comments);
     }
