@@ -15,9 +15,7 @@ $ ->
     smartypants: false
   }
 
-  $review = $('.review')
-
-  $body = $review.find('.review-body')
+  $body = $('.review-body')
   $body.html marked( htmlDecode($body.html()) )
 
   highlightCodeBlocks()

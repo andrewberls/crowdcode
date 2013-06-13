@@ -1,12 +1,9 @@
 activeClass = 'vote-active'
 
-# Get the rid of the current review
-rid = -> $review.data('rid')
-
-
 # POST a vote (direction and amount)
 vote = (dir) ->
-  $.post "/reviews/#{rid()}/votes", { dir: dir }
+  rid = $('.review').data('rid')
+  $.post "/reviews/#{rid}/votes", { dir: dir }
 
 
 # Change the display of the vote counter (direction and amount)

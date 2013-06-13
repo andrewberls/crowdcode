@@ -1,7 +1,8 @@
 # Generate a form to reply to a comment
 reply_form = (parent_id) ->
+  rid = $('.review').data('rid')
   """
-  <form action="/reviews/#{rid()}/comments/" data-remote="true" method="post" class="comment-reply-form">
+  <form action="/reviews/#{rid}/comments/" data-remote="true" method="post" class="comment-reply-form">
     <input type="hidden" name="parent_id" value="#{parent_id}" />
     <textarea name="body"></textarea>
     <input class="btn btn-blue" type="submit" value="Submit" />
