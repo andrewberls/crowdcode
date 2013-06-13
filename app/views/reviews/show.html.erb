@@ -1,7 +1,7 @@
 <% provide(:title, @review.title) %>
 
 <% content_for :javascript_includes do %>
-  <%= javascript_include_tag "reviews" %>
+  <%= javascript_include_tag :reviews %>
 <% end %>
 
 <% content_for :main do %>
@@ -24,7 +24,7 @@
 
   <div class="comments-container">
     <h2>Comments</h2>
-    <%= render :partial => 'reviews/comment', :collection => @review.parent_comments %>
+    <%= render partial: 'reviews/comment', collection: @review.parent_comments %>
   </div>
 
   <% if signed_in? %>
