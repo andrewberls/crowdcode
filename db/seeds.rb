@@ -16,6 +16,7 @@ rev1 = Review.create!(author: admin, title: 'Need some help on a Ruby function',
 
   <p>Anyone have any input?</p>
 })
+rev1.tag_list = "ruby,rumble"; rev1.save!
 
 # Hack to force an rid
 rev1.rid = 'abcdef'; rev1.save!
@@ -34,7 +35,6 @@ rev1.comments.create!(author: nicole, body: %Q{
 
 
 
-
 rev2 = Review.create!(author: nicole, title: 'This is a post about PHP', body: %Q{
   <p>Herp derp, I like php.</p>
 
@@ -46,14 +46,14 @@ rev2 = Review.create!(author: nicole, title: 'This is a post about PHP', body: %
 
   <p>Please advise me on my incorrect choice of language.</p>
 })
-
+rev1.tag_list = "php,running"; rev1.save!
 
 
 
 100.times do |i|
   half1 = LiterateRandomizer.sentence[0..10]
   half2 = LiterateRandomizer.sentence[0..10]
-  rev = Review.create!(author: admin, title: "#{half1} ruby #{half2}", body: LiterateRandomizer.paragraph)
+  rev   = Review.create!(author: admin, title: "#{half1} ruby #{half2}", body: LiterateRandomizer.paragraph)
   if rand(3) == 0 # 30%
     rev.comments.create!(author: [jeff, david, nicole].sample, body: "ruby is awesome!")
   end
