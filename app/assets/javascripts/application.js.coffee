@@ -10,7 +10,7 @@ keyEsc = 27
 
 # Clear any sort of popup on escape keypress
 clearPopups = (e) ->
-  if (event.which || event.keyCode) == keyEsc
+  if (e.which || e.keyCode) == keyEsc
     $("[data-popup=true]:visible").each (i, el) -> $(el).hide()
 
 

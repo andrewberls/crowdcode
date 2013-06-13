@@ -4,6 +4,7 @@ $suggList = $('.suggestions-list')
 keyUp     = 38
 keyDown   = 40
 keyEnter  = 13
+keyEsc    = 27
 keyBack   = 8
 keyComma  = 188
 selectedClass = 'selected'
@@ -21,19 +22,21 @@ bindSuggestionSelect = ->
   $form.on 'keydown', (e) -> return false if e.which == keyEnter
 
   $tagInput.on 'keyup', (e) ->
+    keyCode = (e.which || e.keyCode)
+
     if $suggList.is(':visible')
-      switch e.which
+      switch keyCode
         when keyUp    then scrollSelection('up')
         when keyDown  then scrollSelection('down')
         when keyEnter then addTag $('.selected').text()
         else setFetchTimeout()
     else
-      switch e.which
+      switch keyCode
         when keyBack then eraseLastTag()
         when keyComma
           addTag $(@).val().slice(0, -1)
           $(@).val('')
-      setFetchTimeout()
+      setFetchTimeout() unless keyCode == keyEsc
 
 
 # Remove key handlers (unfocused from editor)
@@ -93,6 +96,7 @@ populateSuggestions = (listData) ->
     for name in list
       if $.inArray(name, existing) == -1
         $suggList.append li('.suggestion', name)
+
     $suggList.show()
 
 
