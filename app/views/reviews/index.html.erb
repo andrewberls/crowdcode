@@ -1,21 +1,29 @@
 <% content_for :main do %>
 
-  <div style="margin-bottom: 30px;">
-    <%= link_to "Post Review", new_review_path, class: 'btn btn-large btn-aqua' %>
-  </div>
+  <div class="results-container">
+    <% @reviews.each do |review| %>
+      <div class="result">
+        <div class="result-votes"><%= review.votes %></div>
 
-  <div>
-    <% @reviews.each do |r| %>
-      <div style="outline: 1px solid red; margin-bottom: 15px; padding: 3px;">
-        <%= link_to r.title, r_path(r.rid) %>
-        <span style="float: right; color: #777"><%= r.comments.count %> comments</span>
+        <div class="result-info">
+          <h3><%= link_to review.title, review_path(review.rid) %></h3>
+          <p><%= teaser(review) %></p>
+        </div>
+
+        <div class="result-date">
+          <%= render_time review.created_at %>
+        </div>
       </div>
     <% end %>
   </div>
+
+  <%= will_paginate(@reviews) %>
 
 <% end %>
 
 
 <% content_for :sidebar do %>
-  <p>sidebar!</p>
+  <div style="margin-bottom: 30px;">
+    <%= link_to "Post A Snippet", new_review_path, class: 'btn btn-large btn-full btn-aqua' %>
+  </div>
 <% end %>

@@ -3,8 +3,8 @@ module ReviewsHelper
   CODE_START = '<pre>'
   CODE_END   = '</pre>'
 
-  def teaser(review)
-    teaser = review.body[0..100]
+  def teaser(review, length=100)
+    teaser = review.body[0..length]
 
     if start_idx = teaser.index(CODE_START)
       if end_idx = teaser.index(CODE_END)

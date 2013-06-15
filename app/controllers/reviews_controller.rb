@@ -23,7 +23,8 @@ class ReviewsController < ApplicationController
 
   def index
     # TODO: customize review list if signed in
-    @reviews = Review.all
+    @reviews = Review.paginate(:page => params[:page], :per_page => 30)
+                     .order("id DESC")
   end
 
   def show

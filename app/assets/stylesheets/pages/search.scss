@@ -35,7 +35,11 @@
     padding: 16px 15px 15px;
   }
 
-  .result-info { padding: 5px 0; }
+  .result-info {
+    padding: 5px 0;
+    max-width: 85%;
+    // word-wrap: ellipsis; // TODO: prevent overflow here if possible
+  }
 
   .result-date {
     color: lighten($gray-text, 30);
