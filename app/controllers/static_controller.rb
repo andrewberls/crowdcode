@@ -1,6 +1,6 @@
 class StaticController < ApplicationController
 
-  def start
+  def markdown
   end
 
   def not_found

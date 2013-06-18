@@ -26,6 +26,8 @@ Crowdcode::Application.routes.draw do
   # root to: 'static#start'
   root to: 'reviews#index'
 
+  get 'markdown' => 'static#markdown'
+
   match '*a' => 'static#not_found'
 
 end
