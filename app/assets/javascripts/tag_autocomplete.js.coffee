@@ -131,6 +131,7 @@ eraseLastTag = ->
 
 
 # Populate a hidden field with the names of the tags we've chosen
+# for parsing by the controller
 normalizeTagList = ->
   tagNames = $('.tag').map( (i, el) -> $(el).text() ).get().join(',')
   $('#tag_list').val(tagNames)
