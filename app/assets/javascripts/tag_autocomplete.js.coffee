@@ -71,7 +71,7 @@ scrollSelection = (dir) ->
 
 
 # Query the server for a list of suggestions matching current input
-fetchSuggestions = () ->
+fetchSuggestions = ->
   val = $.trim $tagInput.val()
   if val != ''
     $.get('/reviews/tags', { query: val })
