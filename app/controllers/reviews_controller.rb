@@ -1,7 +1,9 @@
 class ReviewsController < ApplicationController
-
   before_filter :must_be_signed_in, except: [:index, :show, :search]
   before_filter :find_review, only: [:show, :comments]
+
+  PAGE_SIZE = 30
+  TAG_SUGGESTION_LIMIT = 7
 
   def new
     @review = Review.new
@@ -23,12 +25,14 @@ class ReviewsController < ApplicationController
 
   def index
     # TODO: customize review list if signed in
-    @reviews = Review.paginate(:page => params[:page], :per_page => 30)
-                     .order("id DESC")
+    @reviews = Review.paginate(page: params[:page], per_page: PAGE_SIZE)
+                     .order('id DESC')
   end
 
   def show
-    @vote = current_user.vote_for(@review.rid) if signed_in?
+    if signed_in?
+      @vote = current_user.vote_for(@review.rid)
+    end
   end
 
   def edit
@@ -69,18 +73,19 @@ class ReviewsController < ApplicationController
     else
       # TODO: weights
       @search = Review.search do
-        fulltext(params[:q])
-        paginate(page: params[:page])
+        fulltext params[:q]
+        paginate page: params[:page]
       end
     end
   end
 
   def tags
-    @tags = ActsAsTaggableOn::Tag.where("tags.name LIKE ?", "#{params[:query]}%").limit(7)
+    @tags = ActsAsTaggableOn::Tag.where("tags.name LIKE ?", "#{params[:query]}%")
+                                 .limit(TAG_SUGGESTION_LIMIT)
 
     respond_to do |format|
       format.json {
-        render json: @tags.map(&:name)
+        render json: @tags.pluck(:name)
       }
     end
   end
@@ -91,5 +96,4 @@ class ReviewsController < ApplicationController
     @review = Review.find_by_rid(params[:id])
     return render 'static/not_found' if @review.blank?
   end
-
 end

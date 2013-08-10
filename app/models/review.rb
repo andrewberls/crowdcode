@@ -18,12 +18,9 @@ class Review < ActiveRecord::Base
   # TODO: tag search
   searchable do
     text :title, :body
-    text :author do
-      author.username
-    end
-    text :comments do
-      comments.pluck(:body)
-    end
+    text(:author)   { author.username }
+    text(:comments) { comments.pluck(:body) }
+    text(:tags)     { tags.pluck(:name)   }
     time :created_at
   end
 
