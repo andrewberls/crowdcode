@@ -4,7 +4,12 @@
 }
 
 .result-count {
-  font-size: 1.7em;
+  font-size: 2em;
+  margin: 5px 0 15px;
+
+  .query {
+    color: $dark-gray;
+  }
 }
 
 .result-blank {

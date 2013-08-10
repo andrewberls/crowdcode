@@ -4,6 +4,8 @@
 
 <% content_for :main do %>
 
+  <h2>Post a Snippet</h2>
+
   <%= flash_error %>
 
   <%= form_for @review, html: { class: 'form-validate' } do |f| %>
@@ -18,7 +20,7 @@
         <span class="tags">
           <!-- <span class="tag">ruby</span> -->
         </span>
-        <%= text_field_tag :tag_input, nil, placeholder: 'Enter tags', :"data-validate" => false %>
+        <%= text_field_tag :tag_input, nil, placeholder: 'Enter tags', "data-validate" => false %>
       </div>
 
       <ul class="suggestions-list" data-popup="true">

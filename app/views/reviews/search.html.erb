@@ -6,7 +6,10 @@
     <%= submit_tag 'Search', class: 'btn btn-secondary' %>
   <% end %>
 <% else %>
-  <h2 class="result-count"><%= @search.total %> results</h2>
+  <h2 class="result-count">
+    <%= @search.total %> results for
+    <span class="query"><%= params[:q] %></span>
+  </h2>
 
   <div class="results-container">
     <% @search.each_hit_with_result do |hit, review| %>

@@ -31,7 +31,7 @@
       </div>
       -->
       <div class="row">
-        <div class="span-12 <%= main_class %>"><%= yield :main %></div>
+        <div class="span-12 <%= main_class %> bordered"><%= yield :main %></div>
         <div class="span-4 sidebar"><%= yield :sidebar %></div>
       </div>
     <% else %>
@@ -40,11 +40,14 @@
       </div>
     <% end %>
 
-    <div class="row">
-      <div class="span-16">
-        <footer>Hello World</footer>
+    <% unless on_excluded_page %>
+      <div class="row">
+        <div class="span-16">
+          <footer>Hello World</footer>
+        </div>
       </div>
-    </div>
+    <% end %>
+
   </div>
 
 
