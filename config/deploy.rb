@@ -33,11 +33,4 @@ after 'deploy:update_code', 'deploy:migrate'
 #   end
 # end
 
-namespace :db do
-  desc 'load the initial schema'
-  task :load do
-    run "cd #{current_path}; RAILS_ENV=production rake db:schema:load"
-  end
-end
-
 ssh_options[:forward_agent] = true
