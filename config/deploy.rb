@@ -4,7 +4,7 @@ set :application, 'crowdcode'
 set :repository,  'git://github.com/andrewberls/crowdcode.git'
 
 set :scm, :git
-set :branch, 'master'
+set :branch , fetch(:branch, 'master')
 
 set :deploy_to, '/var/www/crowdcode'
 set :user, 'ec2-user'

@@ -13,5 +13,6 @@ test:
 production:
   adapter: postgresql
   database: crowdcode_production
+  username: crowdcodeuser
   pool: 5
   timeout: 5000
