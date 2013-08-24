@@ -13,7 +13,7 @@ test:
 production:
   adapter: postgresql
   database: crowdcode_production
-  username: crowdcodeuser
+  username: root
   password:
   pool: 5
   timeout: 5000
