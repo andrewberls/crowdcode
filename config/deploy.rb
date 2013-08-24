@@ -2,7 +2,7 @@ require 'bundler/capistrano'
 
 set :application, 'crowdcode'
 set :repository,  'git://github.com/andrewberls/crowdcode.git'
-
+set :domain, 'ec2-54-226-157-108.compute-1.amazonaws.com'
 set :scm, :git
 set :branch , fetch(:branch, 'master')
 
@@ -34,3 +34,13 @@ after 'deploy:update_code', 'deploy:migrate'
 # end
 
 ssh_options[:forward_agent] = true
+
+
+
+after 'deploy:update_code', :bundle_install
+
+desc 'install the necessary prerequisites'
+task :bundle_install, roles: :app do
+  run "cd #{release_path} && bundle install"
+  run "cd #{release_path} && rake assets:precompile"
+end
