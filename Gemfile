@@ -13,11 +13,8 @@ gem "hiredis", "~> 0.4.5"
 # Webserver
 gem 'thin'
 
-# gem 'heroku'
-
 # Search
 gem 'sunspot_rails'
-gem 'sunspot_solr' # optional pre-packaged Solr distribution for use in development
 
 # Pagination
 gem 'will_paginate'
@@ -27,8 +24,6 @@ gem 'ancestry'
 
 # Review tags + autocompletion
 gem 'acts-as-taggable-on', '~> 2.3.1'
-#gem 'rails3-jquery-autocomplete'
-
 
 gem 'therubyracer', :platforms => :ruby
 
@@ -39,10 +34,10 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'omniauth-github'
 
 # Caching
-gem 'dalli'
+# gem 'dalli'
 
 # API serializers
-# gem 'active_model_serializers', :github => 'rails-api/active_model_serializers'
+# gem 'active_model_serializers', github: 'rails-api/active_model_serializers'
 
 # Seed data generation
 gem 'literate_randomizer'
@@ -59,4 +54,10 @@ group :development, :test do
   gem 'sqlite3'
   gem 'better_errors'
   gem 'binding_of_caller'
+
+  # Deployment with capistrano
+  gem 'capistrano'
+
+  # Pre-packaged Solr distribution for use in development
+  gem 'sunspot_solr'
 end
