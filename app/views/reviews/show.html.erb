@@ -1,12 +1,5 @@
 <% provide(:title, @review.title) %>
 
-<% content_for :javascript_includes do %>
-  <%= javascript_include_tag 'reviews/reviews' %>
-  <%= javascript_include_tag 'reviews/votes' %>
-  <%= javascript_include_tag 'reviews/comments' %>
-  <%= javascript_include_tag 'marked' %>
-<% end %>
-
 <% content_for :main do %>
   <div class="review" data-rid="<%= @review.rid %>" data-lang="">
     <% if signed_in? %>

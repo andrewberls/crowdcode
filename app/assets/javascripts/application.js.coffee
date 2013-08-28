@@ -2,9 +2,16 @@
 #= require jquery_ujs
 #= require jquery.mailcheck.min
 #= require html.min.js
+#= require mailcheck
+#= require marked
 #= require validation
 #= require search
 #= require dropdown
+#
+#= require tag_autocomplete
+#= require reviews/reviews
+#= require reviews/votes
+#= require reviews/comments
 
 keyEsc = 27
 
