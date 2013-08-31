@@ -4,7 +4,9 @@ gem 'rails', '3.2.11'
 
 gem 'jquery-rails'
 
+gem 'capistrano'
 gem 'pg'
+gem 'gelf'
 
 # Redis and adapters
 gem "redis", "~> 3.0.3"
@@ -17,7 +19,7 @@ gem 'thin'
 
 # Search
 gem 'sunspot_rails'
-gem 'sunspot_solr' # optional pre-packaged Solr distribution for use in development
+#gem 'sunspot_solr' # optional pre-packaged Solr distribution for use in development
 
 # Pagination
 gem 'will_paginate'
@@ -39,7 +41,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'omniauth-github'
 
 # Caching
-gem 'dalli'
+#gem 'dalli'
 
 # API serializers
 # gem 'active_model_serializers', :github => 'rails-api/active_model_serializers'
@@ -57,6 +59,6 @@ group :development, :test do
   gem 'letter_opener'
   #gem 'launchy', '2.1.2'
   gem 'sqlite3'
-  gem 'better_errors'
+  #gem 'better_errors'
   gem 'binding_of_caller'
 end
