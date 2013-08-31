@@ -24,6 +24,7 @@ bindSuggestionSelect = ->
 
   $tagInput.on 'keyup', (e) ->
     keyCode = (e.which || e.keyCode)
+    name    = $(@).val()
 
     if $suggList.is(':visible')
       switch keyCode
@@ -35,8 +36,10 @@ bindSuggestionSelect = ->
       switch keyCode
         when keyBack then eraseLastTag()
         when keyComma
-          addTag $(@).val().slice(0, -1)
+          addTag name.slice(0, -1) # Slice off comma
           $(@).val('')
+        when keyEnter
+          addTag(name)
       setFetchTimeout() unless keyCode == keyEsc
 
 
@@ -142,15 +145,15 @@ $ ->
   $tagInput.on 'focus', bindSuggestionSelect
   $tagInput.on 'blur',  unbindSuggestionSelect
 
-  $(document.body).delegate '.suggestion', 'click', ->
+  $(document).on 'click', '.suggestion', ->
     addTag $(@).text()
 
   $form.submit(normalizeTagList)
 
   # Hack to get hovers to work (CSS hovers weren't playing nice with arrow keys)
-  $(document.body).delegate '.suggestion', 'mouseenter', ->
+  $(document).on 'mouseenter', '.suggestion', ->
     $('.suggestion').removeClass(selectedClass)
     $(@).addClass(selectedClass)
 
-  $(document.body).delegate '.suggestion', 'mouseleave', ->
+  $(document).on 'mouseleave', '.suggestion', ->
     $(@).removeClass('selected')
