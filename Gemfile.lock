@@ -35,13 +35,15 @@ GEM
       activerecord (>= 2.3.14)
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
-    better_errors (0.7.2)
-      coderay (>= 1.0.0)
-      erubis (>= 2.6.6)
     binding_of_caller (0.7.1)
       debug_inspector (>= 0.0.1)
     builder (3.0.4)
-    coderay (1.0.9)
+    capistrano (2.15.5)
+      highline
+      net-scp (>= 1.0.0)
+      net-sftp (>= 2.0.0)
+      net-ssh (>= 2.0.14)
+      net-ssh-gateway (>= 1.1.0)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -50,7 +52,6 @@ GEM
       execjs
     coffee-script-source (1.6.2)
     daemons (1.1.9)
-    dalli (2.6.2)
     debug_inspector (0.0.2)
     erubis (2.7.0)
     eventmachine (1.0.3)
@@ -58,7 +59,10 @@ GEM
       multi_json (~> 1.0)
     faraday (0.8.7)
       multipart-post (~> 1.1)
+    gelf (1.4.0)
+      json
     hashie (1.2.0)
+    highline (1.6.19)
     hike (1.2.1)
     hiredis (0.4.5)
     httpauth (0.2.0)
@@ -83,6 +87,13 @@ GEM
     mime-types (1.21)
     multi_json (1.7.2)
     multipart-post (1.2.0)
+    net-scp (1.1.2)
+      net-ssh (>= 2.6.5)
+    net-sftp (2.1.2)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.6.8)
+    net-ssh-gateway (1.2.0)
+      net-ssh (>= 2.6.5)
     nokogiri (1.5.9)
     oauth2 (0.8.1)
       faraday (~> 0.8)
@@ -148,7 +159,6 @@ GEM
     sunspot_rails (2.0.0)
       nokogiri
       sunspot (= 2.0.0)
-    sunspot_solr (2.0.0)
     therubyracer (0.11.4)
       libv8 (~> 3.11.8.12)
       ref
@@ -174,10 +184,10 @@ DEPENDENCIES
   acts-as-taggable-on (~> 2.3.1)
   ancestry
   bcrypt-ruby (~> 3.0.0)
-  better_errors
   binding_of_caller
+  capistrano
   coffee-rails
-  dalli
+  gelf
   hiredis (~> 0.4.5)
   jquery-rails
   letter_opener
@@ -189,7 +199,6 @@ DEPENDENCIES
   sass-rails
   sqlite3
   sunspot_rails
-  sunspot_solr
   therubyracer
   thin
   uglifier

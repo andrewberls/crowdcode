@@ -1,0 +1,17 @@
+--- 
+address: 0.0.0.0
+require: []
+
+port: 3000
+#max_persistent_conns: 512
+max_persistent_conns: 100
+#chdir: /home/ubuntu/Git/crowdcode
+chdir: /var/www/crowdcode/current
+servers: 3
+wait: 30
+timeout: 30
+log: log/thin.log
+environment: production
+pid: tmp/pids/thin.pid
+max_conns: 1024
+daemonize: true

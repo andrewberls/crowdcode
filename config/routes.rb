@@ -29,5 +29,4 @@ Crowdcode::Application.routes.draw do
   get 'markdown' => 'static#markdown'
 
   match '*a' => 'static#not_found'
-
 end
